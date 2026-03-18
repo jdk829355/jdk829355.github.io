@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   loadVaultData();
   initLightbox();
+  initEmailCopy();
 });
 
 // Configure Marked.js options
@@ -265,5 +266,20 @@ function initLightbox() {
   // ESC 키로 닫기
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
+  });
+}
+
+function initEmailCopy() {
+  const btn = document.getElementById('copy-email-btn');
+  const toast = document.getElementById('copy-toast');
+  if (!btn || !toast) return;
+
+  let toastTimer;
+  btn.addEventListener('click', () => {
+    navigator.clipboard.writeText('jdk829355@gmail.com').then(() => {
+      toast.classList.add('visible');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('visible'), 1500);
+    });
   });
 }
