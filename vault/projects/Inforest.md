@@ -1,9 +1,16 @@
-
 github: https://github.com/JandiProject/Inforest
 ![[Pasted image 20260319002700.png]]
 ![[Pasted image 20260319002820.png]]
 Inforest는 웹 페이지를 주제별로 계층구조로 정리할 수 있습니다.
+### 기능
 - 웹 페이지 그룹화
 - 웹 페이지 계층적으로 관리
 - 웹 페이지에 노트 작성 (마크다운)
 - 웹 페이지 요약 내용 조회
+### 기술 스택
+- Frontend: Flutter (Macos)
+- Backend: gRPC (Go)
+- Db: Neo4j, Supabase
+- Deployment: Docker Compose, Minikube, Google Cloud Run
+- AI: Gemini API
+- MessageQueue: Redis RQ

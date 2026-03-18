@@ -2,8 +2,10 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
+  initSubTabs(); // 내부 탭 초기화
   loadVaultData();
   initLightbox();
+  initProjectModal();
   initEmailCopy();
 });
 
@@ -47,6 +49,25 @@ function initNavigation() {
     window.history.replaceState(null, null, '#about');
   }
   handleRoute();
+}
+
+// Sub-Tab Handling (소개 / 프로젝트)
+function initSubTabs() {
+  const tabs = document.querySelectorAll('.sub-tab');
+  const subPages = document.querySelectorAll('.sub-page');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.getAttribute('data-subtarget');
+
+      tabs.forEach(t => t.classList.remove('active'));
+      subPages.forEach(p => p.classList.remove('active'));
+
+      tab.classList.add('active');
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) targetEl.classList.add('active');
+    });
+  });
 }
 
 // Fetch and load data
@@ -94,7 +115,7 @@ async function loadAbout(aboutPath, profileImage) {
 
   if (profileImage) {
     const photoContainer = document.querySelector('.profile-photo');
-    photoContainer.innerHTML = `<img src="vault/images/${encodeURI(profileImage)}" alt="프로필 사진" style="width:100%;height:100%;object-fit:cover;">`;
+    photoContainer.innerHTML = `<img src="vault/images/${encodeURI(profileImage)}" alt="프로필 사진">`;
     photoContainer.style.border = "none";
   }
 }
@@ -175,6 +196,27 @@ async function loadProjects(projects) {
       initCarousel(carouselEl);
     }
   }
+
+  // 로드 후 높이 체크 (더보기 버튼 활성화)
+  checkDescriptions();
+}
+
+function checkDescriptions() {
+  const descriptions = document.querySelectorAll('.project-description');
+  descriptions.forEach(desc => {
+    // 렌더링 타이밍을 위해 약간의 지연 후 체크
+    setTimeout(() => {
+      if (desc.scrollHeight > 250) {
+        desc.classList.add('clamped');
+        if (!desc.parentNode.querySelector('.read-more-btn')) {
+          const btn = document.createElement('button');
+          btn.className = 'read-more-btn';
+          btn.textContent = '더보기';
+          desc.parentNode.appendChild(btn);
+        }
+      }
+    }, 100);
+  });
 }
 
 function initCarousel(carouselElement) {
@@ -228,6 +270,50 @@ async function loadThoughts(thoughts) {
   }
 }
 
+// ===================== Project Detail Modal =====================
+function initProjectModal() {
+  const modal = document.getElementById('project-modal');
+  const modalTitle = document.getElementById('modal-project-title');
+  const modalBody = document.getElementById('modal-project-body');
+  const closeBtn = document.getElementById('modal-close');
+
+  if (!modal) return;
+
+  function openModal(title, bodyHtml) {
+    modalTitle.textContent = title;
+    modalBody.innerHTML = bodyHtml;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    // 애니메이션 후 내용 삭제
+    setTimeout(() => { modalBody.innerHTML = ''; }, 300);
+  }
+
+  // 더보기 버튼 클릭 감지 (위임)
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('read-more-btn')) {
+      const card = e.target.closest('.project-card');
+      if (card) {
+        const title = card.querySelector('.project-title').textContent;
+        const fullHtml = card.querySelector('.project-description').innerHTML;
+        openModal(title, fullHtml);
+      }
+    }
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+}
+
 // ===================== Lightbox =====================
 function initLightbox() {
   const lightbox = document.getElementById('lightbox');
@@ -265,7 +351,7 @@ function initLightbox() {
 
   // ESC 키로 닫기
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
   });
 }
 
