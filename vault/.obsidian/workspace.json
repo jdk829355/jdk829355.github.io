@@ -11,10 +11,14 @@
             "id": "26596def5e962272",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "thoughts/사고창고 테스트.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "새 탭"
+              "title": "사고창고 테스트"
             }
           }
         ]
@@ -178,6 +182,7 @@
   },
   "active": "26596def5e962272",
   "lastOpenFiles": [
+    "thoughts/사고창고 테스트.md",
     "images/profile.jpeg.sb-8d3ad672-ZzH5XQ",
     "images/profile.jpeg",
     "projects/project-1.md",

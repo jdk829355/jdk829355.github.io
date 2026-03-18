@@ -11,6 +11,11 @@
       "markdown": "project-1.md"
     }
   ],
-  "thoughts": [],
+  "thoughts": [
+    {
+      "title": "사고창고 테스트",
+      "markdown": "사고창고 테스트.md"
+    }
+  ],
   "profile_image": "profile.jpeg"
 }

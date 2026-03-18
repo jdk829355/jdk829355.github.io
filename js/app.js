@@ -100,7 +100,7 @@ async function loadAbout(aboutPath, profileImage) {
 async function loadProjects(projects) {
   const container = document.getElementById('projects-container');
   if (!projects || projects.length === 0) {
-    container.innerHTML = '<p>아직 프로젝트가 없습니다.</p>';
+    container.innerHTML = '<p class="empty-message">아직 프로젝트가 없습니다.</p>';
     return;
   }
 
@@ -188,7 +188,7 @@ function initCarousel(carouselElement) {
 async function loadThoughts(thoughts) {
   const container = document.getElementById('thoughts-container');
   if (!thoughts || thoughts.length === 0) {
-    container.innerHTML = '<p>아직 사고창고가 비어있습니다.</p>';
+    container.innerHTML = '<p class="empty-message">아직 사고창고가 비어있습니다.</p>';
     return;
   }
 
