@@ -2,13 +2,14 @@
   "about": "about.md",
   "projects": [
     {
-      "id": "project-1",
-      "title": "project-1",
-      "github": "https://github.com/JandiProject/jandi-be",
+      "id": "Inforest",
+      "title": "Inforest",
+      "github": "https://github.com/JandiProject/Inforest",
       "images": [
-        "스크린샷 2026-03-18 오후 10.41.09.png"
+        "Pasted image 20260319002700.png",
+        "Pasted image 20260319002820.png"
       ],
-      "markdown": "project-1.md"
+      "markdown": "Inforest.md"
     }
   ],
   "thoughts": [
