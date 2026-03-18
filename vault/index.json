@@ -2,14 +2,14 @@
   "about": "about.md",
   "projects": [
     {
-      "id": "Inforest",
-      "title": "Inforest",
+      "id": "Inforest (25-2 FSSP Lecture Project)",
+      "title": "Inforest (25-2 FSSP Lecture Project)",
       "github": "https://github.com/JandiProject/Inforest",
       "images": [
         "Pasted image 20260319002700.png",
         "Pasted image 20260319002820.png"
       ],
-      "markdown": "Inforest.md"
+      "markdown": "Inforest (25-2 FSSP Lecture Project).md"
     },
     {
       "id": "Jandi",
