@@ -12,24 +12,33 @@ def parse_markdown(filepath):
     github = ""
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
-            content = f.read()
+            lines = f.readlines()
+            if not lines:
+                return title, [], ""
             
-            # github 주소 파싱 (github: url)
-            gm = re.search(r'^github:\s*(https?://[^\s]+)', content, re.MULTILINE | re.IGNORECASE)
+            # 첫 번째 줄에서 github 주소 파싱 (github: url)
+            first_line = lines[0].strip()
+            gm = re.match(r'^github:\s*(https?://[^\s]+)', first_line, re.IGNORECASE)
             if gm:
                 github = gm.group(1).strip()
-                
+            
+            # 전체 내용 (heading 검색용)
+            content = "".join(lines)
+            
+            # 두 번째 줄부터의 내용 (이미지 파싱용)
+            rest_content = "".join(lines[1:])
+            
             # 본문에서 첫 번째 헤딩(# 제목)을 찾으면 그것을 제목으로 사용
             m = re.search(r'^#\s+(.+)', content, re.MULTILINE)
             if m:
                 title = m.group(1).strip()
             
-            # 이미지 태그에서 파일명 추출 (Obsidian 포맷 ![[이미지.png]])
-            img_matches = re.findall(r'!\[\[(.*?)\]\]', content)
+            # 이미지 태그에서 파일명 추출 (Obsidian 포맷 ![[이미지.png]]) - 두 번째 줄부터
+            img_matches = re.findall(r'!\[\[(.*?)\]\]', rest_content)
             images.extend(img_matches)
             
-            # 일반 마크다운 포맷 ![텍스트](이미지.png) -> 괄호 안이 이미지, URL 인코딩 등 무시하고 추출
-            std_matches = re.findall(r'!\[.*?\]\((.*?)\)', content)
+            # 일반 마크다운 포맷 ![텍스트](이미지.png) -> 괄호 안이 이미지 - 두 번째 줄부터
+            std_matches = re.findall(r'!\[.*?\]\((.*?)\)', rest_content)
             for path in std_matches:
                 img_name = os.path.basename(path).replace("%20", " ") # 인코딩 풀기
                 if img_name not in images:

@@ -36,7 +36,12 @@
       <section id="about-page" class="page active">
         <h1 class="page-title">만들고 사고하는 것을 즐기는 개발자 정대균입니다.</h1>
 
-        <div class="profile-section">
+        <div class="sub-tabs">
+          <button class="sub-tab active" data-subtarget="profile-section">소개</button>
+          <button class="sub-tab" data-subtarget="projects-section">프로젝트</button>
+        </div>
+
+        <div id="profile-section" class="profile-section sub-page active">
           <div class="profile-photo">
             <!-- Placeholder for photo -->
             <div class="photo-placeholder">로딩 중...</div>
@@ -58,8 +63,7 @@
           </div>
         </div>
 
-        <div class="projects-section">
-          <h2 class="section-title">프로젝트</h2>
+        <div id="projects-section" class="projects-section sub-page">
           <div id="projects-container">
             <!-- Projects injected here dynamically -->
           </div>
@@ -89,6 +93,21 @@
       <i class="ph ph-x"></i>
     </button>
     <img id="lightbox-img" src="" alt="확대 이미지">
+  </div>
+
+  <!-- Project Detail Modal -->
+  <div id="project-modal" class="modal" role="dialog" aria-modal="true" aria-label="프로젝트 세부 내용">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-project-title">프로젝트명</h3>
+        <button class="modal-close" id="modal-close" aria-label="닫기">
+          <i class="ph ph-x"></i>
+        </button>
+      </div>
+      <div id="modal-project-body" class="markdown-body">
+        <!-- Content will be injected here -->
+      </div>
+    </div>
   </div>
 </body>
 
