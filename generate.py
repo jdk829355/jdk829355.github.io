@@ -55,10 +55,11 @@ def generate():
         for f in files:
             if f.endswith(".md"):
                 path = os.path.join(proj_dir, f)
-                title, images, github = parse_markdown(path)
+                _, images, github = parse_markdown(path)
+                file_title = f.replace(".md", "")  # 파일명을 제목으로 사용
                 data["projects"].append({
-                    "id": f.replace(".md", ""),
-                    "title": title,
+                    "id": file_title,
+                    "title": file_title,
                     "github": github,
                     "images": images,
                     "markdown": f

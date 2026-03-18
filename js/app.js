@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   loadVaultData();
+  initLightbox();
 });
 
 // Configure Marked.js options
@@ -140,7 +141,14 @@ async function loadProjects(projects) {
       <article class="project-card">
         <div class="project-carousel" id="carousel-${proj.id}">
           ${imagesHtml}
-          ${proj.images && proj.images.length > 1 ? `<div class="carousel-controls">${dotsHtml}</div>` : ''}
+          ${proj.images && proj.images.length > 1 ? `
+            <button class="carousel-arrow carousel-arrow-prev" aria-label="이전 사진">
+              <i class="ph ph-caret-left"></i>
+            </button>
+            <button class="carousel-arrow carousel-arrow-next" aria-label="다음 사진">
+              <i class="ph ph-caret-right"></i>
+            </button>
+          ` : ''}
         </div>
         <div class="project-content">
           <div class="project-header">
@@ -170,19 +178,27 @@ async function loadProjects(projects) {
 
 function initCarousel(carouselElement) {
   const images = carouselElement.querySelectorAll('img');
-  const dots = carouselElement.querySelectorAll('.carousel-dot');
+  let current = 0;
 
-  dots.forEach((dot, dotIdx) => {
-    dot.addEventListener('click', () => {
-      // Deactivate all
-      images.forEach(i => i.classList.remove('active'));
-      dots.forEach(d => d.classList.remove('active'));
+  function showImage(idx) {
+    images.forEach(i => i.classList.remove('active'));
+    images[idx].classList.add('active');
+    current = idx;
+  }
 
-      // Activate selected
-      images[dotIdx].classList.add('active');
-      dots[dotIdx].classList.add('active');
+  const prev = carouselElement.querySelector('.carousel-arrow-prev');
+  const next = carouselElement.querySelector('.carousel-arrow-next');
+
+  if (prev) {
+    prev.addEventListener('click', () => {
+      showImage((current - 1 + images.length) % images.length);
     });
-  });
+  }
+  if (next) {
+    next.addEventListener('click', () => {
+      showImage((current + 1) % images.length);
+    });
+  }
 }
 
 async function loadThoughts(thoughts) {
@@ -200,6 +216,7 @@ async function loadThoughts(thoughts) {
     const html = `
       <article class="thought-card">
         <h3 class="thought-title">${thought.title}</h3>
+        <hr class="thought-divider">
         <div class="thought-content markdown-body">
           ${markdownHtml}
         </div>
@@ -208,4 +225,45 @@ async function loadThoughts(thoughts) {
 
     container.insertAdjacentHTML('beforeend', html);
   }
+}
+
+// ===================== Lightbox =====================
+function initLightbox() {
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const closeBtn = document.getElementById('lightbox-close');
+
+  function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '확대 이미지';
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    lightboxImg.src = '';
+  }
+
+  // 클릭 이벤트 위임: .project-carousel img, .profile-photo img 전부 감지
+  document.addEventListener('click', (e) => {
+    const img = e.target.closest('.project-carousel img, .profile-photo img');
+    if (img) {
+      openLightbox(img.src, img.alt);
+    }
+  });
+
+  // 닫기 버튼
+  closeBtn.addEventListener('click', closeLightbox);
+
+  // 배경 클릭 시 닫기
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  // ESC 키로 닫기
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
 }

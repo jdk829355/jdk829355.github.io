@@ -162,21 +162,18 @@ body {
 }
 
 .profile-photo {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: transparent;
+  border: none;
   border-radius: var(--radius-lg);
   aspect-ratio: 3 / 4;
   height: 100%;
-  /* '소개글 상자랑 같은 높이를 가짐' */
   width: auto;
   max-width: 100%;
   justify-self: center;
-  /* '가상의 박스 안에서 가로로 가운데 정렬' */
   min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-sm);
   overflow: hidden;
 }
 
@@ -248,15 +245,15 @@ body {
 }
 
 .project-carousel {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: transparent;
+  /* 투명 배경 */
+  border: none;
   border-radius: var(--radius-lg);
   display: grid;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
 }
 
 .project-carousel img {
@@ -266,32 +263,47 @@ body {
   object-fit: contain;
   opacity: 0;
   transition: opacity 0.3s ease;
+  border-radius: var(--radius-lg);
+  pointer-events: none;
+  /* 비활성 상태일 때 클릭 불가 */
 }
 
 .project-carousel img.active {
   opacity: 1;
+  pointer-events: auto;
+  /* 표시 중인 이미지만 클릭 가능 */
 }
 
-.carousel-controls {
+/* Arrow buttons */
+.carousel-arrow {
   position: absolute;
-  bottom: 16px;
-  display: flex;
-  gap: 8px;
-  z-index: 10;
-}
-
-.carousel-dot {
-  width: 8px;
-  height: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.25);
+  border: none;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: var(--transition);
+  z-index: 10;
+  color: white;
+  font-size: 1.1rem;
+  transition: background 0.2s ease;
 }
 
-.carousel-dot.active {
-  background: white;
-  transform: scale(1.2);
+.carousel-arrow:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-arrow-prev {
+  left: 10px;
+}
+
+.carousel-arrow-next {
+  right: 10px;
 }
 
 .project-content {
@@ -360,23 +372,30 @@ body {
 }
 
 .thought-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 32px;
-  box-shadow: var(--shadow-sm);
-  transition: var(--transition);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  transition: none;
 }
 
 .thought-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  box-shadow: none;
+  transform: none;
 }
 
 .thought-title {
-  font-size: 1.1rem;
+  font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: 12px;
+  color: var(--color-text-main);
+}
+
+.thought-divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin-bottom: 16px;
 }
 
 .thought-content {
@@ -433,6 +452,61 @@ body {
   margin: 3px 3px 3px 0;
   border-radius: 4px;
   vertical-align: middle;
+}
+
+/* ===================== Lightbox ===================== */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+  animation: fadeIn 0.2s ease;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 16px 64px rgba(0, 0, 0, 0.6);
+  cursor: default;
+  pointer-events: none;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* clickable 이미지 커서 */
+.project-carousel img,
+.profile-photo img {
+  cursor: zoom-in;
 }
 
 /* Responsive */
