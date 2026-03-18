@@ -219,12 +219,28 @@ body {
 .social-email {
   font-size: 0.95rem;
   line-height: 1.5rem;
-  /* Vertically align with icon */
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-family);
 }
 
 .social-email:hover {
   transform: scale(1.03);
-  /* 이메일은 텍스트라 살짝만 커지도록 */
+}
+
+.copy-toast {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  align-self: center;
+}
+
+.copy-toast.visible {
+  opacity: 1;
 }
 
 /* Projects Section specific */
