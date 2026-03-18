@@ -1,4 +1,4 @@
-<!-- project-1.md -->
+
 github: https://github.com/JandiProject/Inforest
 ![[Pasted image 20260319002700.png]]
 ![[Pasted image 20260319002820.png]]
