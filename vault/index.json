@@ -1,0 +1,65 @@
+{
+  "about": "about.md",
+  "projects": [
+    {
+      "id": "project-1 1",
+      "title": "project-1 1",
+      "github": "https://github.com/JandiProject/jandi-be",
+      "images": [
+        "스크린샷 2026-03-18 오후 10.41.09.png"
+      ],
+      "markdown": "project-1 1.md"
+    },
+    {
+      "id": "project-1 2",
+      "title": "project-1 2",
+      "github": "https://github.com/JandiProject/jandi-be",
+      "images": [
+        "스크린샷 2026-03-18 오후 10.41.09.png"
+      ],
+      "markdown": "project-1 2.md"
+    },
+    {
+      "id": "project-1 3",
+      "title": "project-1 3",
+      "github": "https://github.com/JandiProject/jandi-be",
+      "images": [
+        "스크린샷 2026-03-18 오후 10.41.09.png"
+      ],
+      "markdown": "project-1 3.md"
+    },
+    {
+      "id": "project-1 4",
+      "title": "project-1 4",
+      "github": "https://github.com/JandiProject/jandi-be",
+      "images": [
+        "스크린샷 2026-03-18 오후 10.41.09.png"
+      ],
+      "markdown": "project-1 4.md"
+    },
+    {
+      "id": "project-1",
+      "title": "project-1",
+      "github": "https://github.com/JandiProject/jandi-be",
+      "images": [
+        "스크린샷 2026-03-18 오후 10.41.09.png"
+      ],
+      "markdown": "project-1.md"
+    }
+  ],
+  "thoughts": [
+    {
+      "title": "내 생각",
+      "markdown": "내 생각.md"
+    },
+    {
+      "title": "thought-1",
+      "markdown": "thought-1.md"
+    },
+    {
+      "title": "thought-2",
+      "markdown": "thought-2.md"
+    }
+  ],
+  "profile_image": "profile.jpeg"
+}

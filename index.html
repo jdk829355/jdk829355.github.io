@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jdk829355</title>
+
+  <!-- Google Sans Flex Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://cdn.jsdelivr.net/gh/sunnvest/font/google-sans.css" rel="stylesheet">
+
+  <!-- Marked.js for Markdown parsing -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- Phosphor Icons for Github Icon (no emojis) -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <header class="top-nav">
+      <div class="logo">jdk829355</div>
+      <nav class="nav-links">
+        <a href="#about" class="nav-link active" data-target="about-page">저는 이런 사람입니다</a>
+        <a href="#thoughts" class="nav-link" data-target="thoughts-page">사고창고</a>
+      </nav>
+    </header>
+
+    <main class="content-area">
+      <!-- About Me Page -->
+      <section id="about-page" class="page active">
+        <h1 class="page-title">만들고 사고하는 것을 즐기는 개발자 정대균입니다.</h1>
+
+        <div class="profile-section">
+          <div class="profile-photo">
+            <!-- Placeholder for photo -->
+            <div class="photo-placeholder">사진</div>
+          </div>
+          <div class="profile-intro" id="about-markdown-container">
+            <!-- Markdown will be injected here -->
+            <div class="loading">로딩 중...</div>
+          </div>
+        </div>
+
+        <div class="projects-section">
+          <h2 class="section-title">프로젝트</h2>
+          <div id="projects-container">
+            <!-- Projects injected here dynamically -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Thoughts Page -->
+      <section id="thoughts-page" class="page">
+        <div class="thoughts-header">
+          <h1 class="page-title">사고창고</h1>
+          <p class="page-subtitle">(제가 했던 고민과 그 해결과정을 제목과 짧은 글로 정리한 공간입니다)</p>
+        </div>
+
+        <div id="thoughts-container" class="thoughts-list">
+          <!-- Thoughts injected here dynamically -->
+          <div class="loading">로딩 중...</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
