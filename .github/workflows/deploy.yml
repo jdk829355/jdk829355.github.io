@@ -21,9 +21,6 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Auto-generate vault index
-        run: python3 generate.py
-
       # generate.py가 생성한 index.json을 포함해 GitHub Pages 브랜치로 푸시
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
