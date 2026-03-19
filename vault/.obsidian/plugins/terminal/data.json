@@ -7,7 +7,7 @@
   "focusOnNewInstance": true,
   "hideStatusBar": "focused",
   "interceptLogging": true,
-  "language": "",
+  "language": "ko",
   "macOSOptionKeyPassthrough": true,
   "newInstanceBehavior": "newHorizontalSplit",
   "noticeTimeout": 5,
@@ -161,7 +161,7 @@
       "useWin32Conhost": true
     }
   },
-  "defaultProfile": null,
+  "defaultProfile": "darwinIntegratedDefault",
   "terminalOptions": {
     "documentOverride": null
   }
