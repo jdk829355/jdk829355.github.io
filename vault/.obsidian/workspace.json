@@ -46,7 +46,7 @@
               },
               "pinned": true,
               "icon": "terminal",
-              "title": "터미널: jeongdaegyun@MacBooooook:~/myhomepage/vault"
+              "title": "터미널: ( cd ~/myhomepage && python3 generate.py && git add . && git commit -m  && gi)"
             }
           },
           {
@@ -55,16 +55,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "projects/{2}Inforest (25-2 FSSP Lecture Project).md",
+                "file": "projects/{2}Inforest (25-2 FSSP Project).md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "{2}Inforest (25-2 FSSP Lecture Project)"
+              "title": "{2}Inforest (25-2 FSSP Project)"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -137,7 +136,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "projects/{2}Inforest (25-2 FSSP Lecture Project).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -147,7 +145,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "{2}Inforest (25-2 FSSP Lecture Project) 의 백링크"
+              "title": "백링크"
             }
           },
           {
@@ -225,10 +223,11 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "b57eb289adb164d1",
+  "active": "797a9059132df2b6",
   "lastOpenFiles": [
+    "projects/{2}Inforest (25-2 FSSP Project).md",
+    "projects/{1}Jandi (진행중).md",
     "images/Pasted image 20260320012703.png",
-    "projects/{2}Inforest (25-2 FSSP Lecture Project).md",
     "images/Pasted image 20260320012521.png",
     "images/Pasted image 20260320012510.png",
     "images/Pasted image 20260320012503.png",
@@ -237,9 +236,7 @@
     "images/Pasted image 20260320011450.png",
     "images/Pasted image 20260320011503.png",
     "images/Pasted image 20260320011510.png",
-    "projects/{1}Jandi (진행중).md",
     "images/Pasted image 20260320011446.png",
-    "images/Pasted image 20260320011433.png",
     "about.md",
     "thoughts/사고창고 글 추가 테스트.md",
     "thoughts/사고창고 테스트.md",
