@@ -2,8 +2,8 @@
   "about": "about.md",
   "projects": [
     {
-      "id": "Jandi (진행중)",
-      "title": "Jandi (진행중)",
+      "id": "Jandi",
+      "title": "Jandi",
       "github": "https://github.com/JandiProject",
       "images": [
         "Pasted image 20260319230639.png",
@@ -21,13 +21,14 @@
         "Pasted image 20260320011510.png"
       ],
       "tags": [
-        "팀프로젝트"
+        "팀프로젝트",
+        "진행중"
       ],
-      "markdown": "{1}Jandi (진행중).md"
+      "markdown": "{1}Jandi.md"
     },
     {
-      "id": "Inforest (25-2 FSSP Project)",
-      "title": "Inforest (25-2 FSSP Project)",
+      "id": "Inforest",
+      "title": "Inforest",
       "github": "https://github.com/jdk829355/Inforest",
       "images": [
         "Pasted image 20260320012703.png",
@@ -36,9 +37,10 @@
         "Pasted image 20260320012521.png"
       ],
       "tags": [
-        "개인프로젝트"
+        "개인프로젝트",
+        "25-2-FSSP-Project"
       ],
-      "markdown": "{2}Inforest (25-2 FSSP Project).md"
+      "markdown": "{2}Inforest.md"
     }
   ],
   "thoughts": [
