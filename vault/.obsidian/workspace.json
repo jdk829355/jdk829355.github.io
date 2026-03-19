@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "projects/{1}Jandi (진행중).md",
+                "file": "projects/{2}Inforest (25-2 FSSP Project).md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "{1}Jandi (진행중)"
+              "title": "{2}Inforest (25-2 FSSP Project)"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "projects/{1}Jandi (진행중).md",
+                "file": "projects/{2}Inforest (25-2 FSSP Project).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "{1}Jandi (진행중) 의 백링크"
+              "title": "{2}Inforest (25-2 FSSP Project) 의 백링크"
             }
           },
           {
@@ -184,8 +184,9 @@
   },
   "active": "b57eb289adb164d1",
   "lastOpenFiles": [
-    "projects/{2}Inforest (25-2 FSSP Project).md",
+    "index.json",
     "projects/{1}Jandi (진행중).md",
+    "projects/{2}Inforest (25-2 FSSP Project).md",
     "thoughts/Spring에 입문하며 느낀점.md",
     "images/Pasted image 20260320012703.png",
     "images/Pasted image 20260320012521.png",

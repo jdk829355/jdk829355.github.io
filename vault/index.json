@@ -4,7 +4,7 @@
     {
       "id": "Jandi (진행중)",
       "title": "Jandi (진행중)",
-      "github": "",
+      "github": "https://github.com/JandiProject",
       "images": [
         "Pasted image 20260319230639.png",
         "Pasted image 20260320011332.png",
@@ -20,17 +20,23 @@
         "Pasted image 20260320011503.png",
         "Pasted image 20260320011510.png"
       ],
+      "tags": [
+        "팀프로젝트"
+      ],
       "markdown": "{1}Jandi (진행중).md"
     },
     {
       "id": "Inforest (25-2 FSSP Project)",
       "title": "Inforest (25-2 FSSP Project)",
-      "github": "",
+      "github": "https://github.com/JandiProject/Inforest",
       "images": [
         "Pasted image 20260320012703.png",
         "Pasted image 20260320012503.png",
         "Pasted image 20260320012510.png",
         "Pasted image 20260320012521.png"
+      ],
+      "tags": [
+        "개인프로젝트"
       ],
       "markdown": "{2}Inforest (25-2 FSSP Project).md"
     }
