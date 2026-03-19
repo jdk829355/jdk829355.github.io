@@ -459,9 +459,28 @@ body {
   padding-bottom: 16px;
 }
 
+.project-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .project-title {
   font-size: 1.5rem;
   font-weight: 700;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.project-tag {
+  font-size: 0.8rem;
+  color: var(--color-primary);
+  opacity: 0.8;
+  font-weight: 500;
 }
 
 .github-link {

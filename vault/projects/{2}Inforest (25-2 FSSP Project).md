@@ -1,3 +1,7 @@
+---
+tags:
+  - 개인프로젝트
+---
 github: https://github.com/JandiProject/Inforest
 ![[Pasted image 20260320012703.png]]
 ![[Pasted image 20260320012503.png]]

@@ -137,12 +137,33 @@ async function loadProjects(projects) {
       const res = await fetch(`vault/projects/${proj.markdown}`);
       if (res.ok) {
         let text = await res.text();
-        // 프로젝트 텍스트 본문에서는 이 메타데이터들을 지운다
+
+        // YAML Tags parsing (--- tags: ... ---)
+        let tags = [];
+        const tagsMatch = text.match(/^---\s*\ntags:\s*\n((?:\s*-\s*.*\n?)+)---/);
+        if (tagsMatch) {
+          const tagList = tagsMatch[1];
+          tags = tagList.split('\n')
+            .map(t => t.replace(/^\s*-\s*/, '').trim())
+            .filter(t => t !== '');
+        }
+
+        // 전체 프론트매터 제거 (태그 포함)
+        text = text.replace(/^---[\s\S]*?---\s*/, '');
+
+        // 프로젝트 텍스트 본문(프론트매터 이후)에서 github 링크와 이미지 제거
         text = text.replace(/^github:\s*.*$/gim, '');
         text = text.replace(/!\[\[(.*?)\]\]/g, '');
         text = text.replace(/!\[([^\]]*)\](?!\()/g, '');
         text = text.replace(/!\[.*?\]\((.*?)\)/g, '');
         markdownHtml = marked.parse(text);
+
+        // 태그 HTML 생성
+        let tagsHtml = '';
+        if (tags.length > 0) {
+          tagsHtml = `<div class="project-tags">${tags.map(t => `<span class="project-tag">#${t}</span>`).join('')}</div>`;
+        }
+        proj.tagsHtml = tagsHtml; // 임시 저장
       }
     } catch (e) { }
 
@@ -175,7 +196,10 @@ async function loadProjects(projects) {
         </div>
         <div class="project-content">
           <div class="project-header">
-            <h3 class="project-title">${proj.title}</h3>
+            <div class="project-title-group">
+              <h3 class="project-title">${proj.title}</h3>
+              ${proj.tagsHtml || ''}
+            </div>
             ${proj.github ? `
               <a href="${proj.github}" target="_blank" rel="noopener noreferrer" class="github-link">
                 <i class="ph ph-github-logo"></i>
