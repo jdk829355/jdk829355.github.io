@@ -1,6 +1,7 @@
 ---
 tags:
   - 팀프로젝트
+  - 진행중
 ---
 github: https://github.com/JandiProject
 ![[Pasted image 20260319230639.png]]

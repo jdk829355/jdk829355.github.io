@@ -1,6 +1,7 @@
 ---
 tags:
   - 개인프로젝트
+  - 25-2-FSSP-Project
 ---
 github: https://github.com/jdk829355/Inforest
 ![[Pasted image 20260320012703.png]]
