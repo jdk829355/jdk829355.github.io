@@ -24,21 +24,21 @@
 <body>
   <div class="app-container">
     <header class="top-nav">
-      <div class="logo">jdk829355</div>
+      <div class="logo">jdk829355@dev:~</div>
       <nav class="nav-links">
-        <a href="#about" class="nav-link active" data-target="about-page">저는 이런 사람입니다</a>
-        <a href="#thoughts" class="nav-link" data-target="thoughts-page">사고창고</a>
+        <a href="#about" class="nav-link active" data-target="about-page">whoami</a>
+        <a href="#thoughts" class="nav-link" data-target="thoughts-page">thoughts</a>
       </nav>
     </header>
 
     <main class="content-area">
       <!-- About Me Page -->
       <section id="about-page" class="page active">
-        <h1 class="page-title">만들고 사고하는 것을 즐기는 개발자 정대균입니다.</h1>
+        <h1 id="typewriter-title" class="page-title">$echo "만들고 사고하는 것을 즐깁니다."</h1>
 
         <div class="sub-tabs">
-          <button class="sub-tab active" data-subtarget="profile-section">소개</button>
-          <button class="sub-tab" data-subtarget="projects-section">프로젝트</button>
+          <button class="sub-tab active" data-subtarget="profile-section">$whoami</button>
+          <button class="sub-tab" data-subtarget="projects-section">$ls ./projects</button>
         </div>
 
         <div id="profile-section" class="profile-section sub-page active">
@@ -73,7 +73,7 @@
       <!-- Thoughts Page -->
       <section id="thoughts-page" class="page">
         <div class="thoughts-header">
-          <h1 class="page-title">사고창고</h1>
+          <h1 id="typewriter-title" class="page-title">$cat ./thoughts</h1>
           <p class="page-subtitle">제가 했던 고민과 그 해결과정을 제목과 짧은 글로 정리한 공간입니다</p>
         </div>
 
