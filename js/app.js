@@ -91,7 +91,7 @@ async function loadVaultData() {
 
 async function fetchMarkdown(path) {
   try {
-    const res = await fetch(path);
+    const res = await fetch(encodeURI(path));
     if (!res.ok) throw new Error(`Failed to load ${path}`);
     let text = await res.text();
 
@@ -137,7 +137,7 @@ async function loadProjects(projects) {
     // 미리 markdown 내용을 가져옴 (이미지와 github 헤더를 제거하기 위함)
     let markdownHtml = '';
     try {
-      const res = await fetch(`vault/projects/${proj.markdown}`);
+      const res = await fetch(`vault/projects/${encodeURI(proj.markdown)}`);
       if (res.ok) {
         let text = await res.text();
         // YAML Frontmatter 제거
@@ -149,7 +149,9 @@ async function loadProjects(projects) {
         text = text.replace(/!\[.*?\]\((.*?)\)/g, '');
         markdownHtml = marked.parse(text);
       }
-    } catch (e) { }
+    } catch (e) {
+      console.error(`Error fetching project markdown: ${proj.markdown}`, e);
+    }
 
     // Create Carousel HTML
     let imagesHtml = '';
