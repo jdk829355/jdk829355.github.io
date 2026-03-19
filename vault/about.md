@@ -12,8 +12,6 @@
   <span style="font-size: 0.85em; opacity: 0.6;">(Software Convergence / Undergraduate)</span>
 </div>
 
-<hr style="border: 0; border-top: 1px solid var(--color-border); margin: 32px 0;">
-
 ### 💻 Languages 
 <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
 <img src="https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=Go&logoColor=white"/>

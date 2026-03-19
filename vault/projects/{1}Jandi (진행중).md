@@ -13,6 +13,7 @@ github: https://github.com/JandiProject
 ![[Pasted image 20260320011503.png]]
 ![[Pasted image 20260320011510.png]]
 Jandi 서비스는 블로그의 글을 잔디밭으로 보여주고 주제 분석을 하여 블로그를 분석하는 서비스입니다.
+[유튜브 영상](https://youtu.be/IvbV9t1wWMs)
 
 ### 기능
 - 블로그 등록/삭제
