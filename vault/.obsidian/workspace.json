@@ -63,7 +63,8 @@
               "title": "{2}Inforest (25-2 FSSP Lecture Project)"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -136,6 +137,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "projects/{2}Inforest (25-2 FSSP Lecture Project).md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -145,7 +147,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "백링크"
+              "title": "{2}Inforest (25-2 FSSP Lecture Project) 의 백링크"
             }
           },
           {
@@ -223,8 +225,9 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "797a9059132df2b6",
+  "active": "b57eb289adb164d1",
   "lastOpenFiles": [
+    "images/Pasted image 20260320012703.png",
     "projects/{2}Inforest (25-2 FSSP Lecture Project).md",
     "images/Pasted image 20260320012521.png",
     "images/Pasted image 20260320012510.png",
