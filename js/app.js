@@ -158,11 +158,18 @@ async function loadProjects(projects) {
         text = text.replace(/!\[\[(.*?)\]\]/g, '');
         text = text.replace(/!\[([^\]]*)\](?!\()/g, '');
         text = text.replace(/!\[.*?\]\((.*?)\)/g, '');
-        markdownHtml = (marked.parse || marked)(text);
+
+        if (typeof marked === 'undefined') {
+          markdownHtml = `<p>Error: Marked.js not loaded.</p><pre>${text}</pre>`;
+        } else {
+          markdownHtml = (marked.parse || marked)(text);
+        }
       } else {
-        console.warn(`Fetch redundant: ${res.status} for ${proj.markdown}`);
+        markdownHtml = `<p class="error-message">내용을 불러올 수 없습니다. (Status: ${res.status})</p>`;
+        console.warn(`Fetch failed: ${res.status} for vault/projects/${proj.markdown}`);
       }
     } catch (e) {
+      markdownHtml = `<p class="error-message">내용 로드 중 오류가 발생했습니다.</p>`;
       console.error(`Error fetching project markdown: ${proj.markdown}`, e);
     }
 
