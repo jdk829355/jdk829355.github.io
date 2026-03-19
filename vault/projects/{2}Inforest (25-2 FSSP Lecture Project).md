@@ -1,6 +1,6 @@
 github: https://github.com/JandiProject/Inforest
-![[Pasted image 20260319002700.png|697]]
-![[Pasted image 20260319002820.png|697]]
+![[Pasted image 20260319002700.png|]]
+![[Pasted image 20260319002820.png]]
 Inforest는 웹 페이지를 주제별로 계층구조로 정리할 수 있습니다.
 ### 기능
 - 웹 페이지 그룹화
