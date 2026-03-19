@@ -17,12 +17,12 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "projects/{1}Jandi.md",
+                    "file": "projects/{2}Inforest (25-2 FSSP Lecture Project).md",
                     "mode": "source",
                     "source": false
                   },
                   "icon": "lucide-file",
-                  "title": "{1}Jandi"
+                  "title": "{2}Inforest (25-2 FSSP Lecture Project)"
                 }
               }
             ]
@@ -133,7 +133,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 335.5
+    "width": 395.5
   },
   "right": {
     "id": "f5c7c927aeb982ac",
@@ -238,11 +238,11 @@
   },
   "active": "5d3a89693e05d72b",
   "lastOpenFiles": [
+    "projects/{2}Inforest (25-2 FSSP Lecture Project).md",
     "projects/{1}Jandi.md",
     "images/Pasted image 20260319230639.png",
     "thoughts/사고창고 글 추가 테스트.md",
     "thoughts/사고창고 테스트.md",
-    "projects/{2}Inforest (25-2 FSSP Lecture Project).md",
     "about.md",
     "templates/{seq}projects.md",
     "projects/무제.md",
