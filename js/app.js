@@ -73,8 +73,9 @@ function initSubTabs() {
 
 // Fetch and load data
 async function loadVaultData() {
+  const cacheBuster = `?t=${new Date().getTime()}`;
   try {
-    const res = await fetch('vault/index.json');
+    const res = await fetch(`vault/index.json${cacheBuster}`);
     if (!res.ok) throw new Error('Cannot load vault/index.json');
     const data = await res.json();
 
@@ -90,13 +91,19 @@ async function loadVaultData() {
 }
 
 async function fetchMarkdown(path) {
+  const cacheBuster = `?t=${new Date().getTime()}`;
   try {
-    const res = await fetch(encodeURI(path));
+    // 경로의 마지막 슬래시 이후 부분(파일명)만 encodeURIComponent 처리
+    const pathParts = path.split('/');
+    const filename = pathParts.pop();
+    const encodedPath = pathParts.join('/') + '/' + encodeURIComponent(filename);
+
+    const res = await fetch(encodedPath + cacheBuster);
     if (!res.ok) throw new Error(`Failed to load ${path}`);
     let text = await res.text();
 
-    // YAML Frontmatter 제거 (줄바꿈 호환성 개선)
-    text = text.replace(/^---\s*[\s\S]*?---\s*(\r\n|\n)/m, '');
+    // YAML Frontmatter 제거 (더 유연한 정규식)
+    text = text.replace(/^---\s*[\s\S]*?---\s*/m, '');
 
     // Obsidian style image syntax ![[image.png]] 지원을 위한 전처리
     text = text.replace(/!\[\[(.*?)\]\]/g, (match, p1) => `![${p1}](${encodeURI('vault/images/' + p1)})`);
@@ -134,20 +141,26 @@ async function loadProjects(projects) {
   container.innerHTML = '';
 
   for (const proj of projects) {
+    const cacheBuster = `?t=${new Date().getTime()}`;
+    // ID에 공백이나 특수문자가 있으면 HTML ID로 부적합하므로 안전하게 변환
+    const safeId = proj.id.replace(/[^a-z0-9]/gi, '_');
+
     // 미리 markdown 내용을 가져옴 (이미지와 github 헤더를 제거하기 위함)
     let markdownHtml = '';
     try {
-      const res = await fetch(`vault/projects/${encodeURIComponent(proj.markdown)}`);
+      const res = await fetch(`vault/projects/${encodeURIComponent(proj.markdown)}${cacheBuster}`);
       if (res.ok) {
         let text = await res.text();
-        // YAML Frontmatter 제거 (줄바꿈 호환성 개선)
-        text = text.replace(/^---\s*[\s\S]*?---\s*(\r\n|\n)/m, '');
+        // YAML Frontmatter 제거
+        text = text.replace(/^---\s*[\s\S]*?---\s*/m, '');
         // 프로젝트 텍스트 본문에서는 이 메타데이터들을 지운다
         text = text.replace(/^github:\s*.*$/gim, '');
         text = text.replace(/!\[\[(.*?)\]\]/g, '');
         text = text.replace(/!\[([^\]]*)\](?!\()/g, '');
         text = text.replace(/!\[.*?\]\((.*?)\)/g, '');
-        markdownHtml = marked.parse(text);
+        markdownHtml = (marked.parse || marked)(text);
+      } else {
+        console.warn(`Fetch redundant: ${res.status} for ${proj.markdown}`);
       }
     } catch (e) {
       console.error(`Error fetching project markdown: ${proj.markdown}`, e);
@@ -169,7 +182,7 @@ async function loadProjects(projects) {
 
     const html = `
       <article class="project-card">
-        <div class="project-carousel" id="carousel-${proj.id}">
+        <div class="project-carousel" id="carousel-${safeId}">
           ${imagesHtml}
           ${proj.images && proj.images.length > 1 ? `
             <button class="carousel-arrow carousel-arrow-prev" aria-label="이전 사진">
@@ -207,7 +220,7 @@ async function loadProjects(projects) {
 
     // Init Carousel interactions
     if (proj.images && proj.images.length > 1) {
-      const carouselEl = document.getElementById(`carousel-${proj.id}`);
+      const carouselEl = document.getElementById(`carousel-${safeId}`);
       initCarousel(carouselEl);
     }
   }
