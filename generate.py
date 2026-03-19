@@ -59,20 +59,30 @@ def generate():
     # 1. Projects 폴더 스캔
     proj_dir = os.path.join(VAULT_DIR, "projects")
     if os.path.exists(proj_dir):
-        # 파일명 순 정렬
-        files = sorted(os.listdir(proj_dir))
-        for f in files:
-            if f.endswith(".md"):
-                path = os.path.join(proj_dir, f)
-                _, images, github = parse_markdown(path)
-                file_title = f.replace(".md", "")  # 파일명을 제목으로 사용
-                data["projects"].append({
-                    "id": file_title,
-                    "title": file_title,
-                    "github": github,
-                    "images": images,
-                    "markdown": f
-                })
+        # 파일명에서 {seq} 부분을 제거하고, title을 추출하는 함수
+        def parse_proj_filename(filename):
+            match = re.match(r'^\{(\d+)\}(.*)\.md$', filename)
+            if match:
+                return int(match.group(1)), match.group(2).strip()
+            return 999999, filename.replace(".md", "").strip()
+
+        # .md 파일 필터링 후 정보 추출
+        files = [f for f in os.listdir(proj_dir) if f.endswith(".md")]
+        proj_files_info = [(parse_proj_filename(f)[0], parse_proj_filename(f)[1], f) for f in files]
+        
+        # seq 기준으로 오름차순 정렬 (seq가 없는 경우 맨 뒤가 되도록 999999 반환)
+        proj_files_info.sort(key=lambda x: (x[0], x[1]))
+
+        for seq, file_title, f in proj_files_info:
+            path = os.path.join(proj_dir, f)
+            _, images, github = parse_markdown(path)
+            data["projects"].append({
+                "id": file_title,
+                "title": file_title,
+                "github": github,
+                "images": images,
+                "markdown": f
+            })
                 
     # 2. Thoughts 폴더 스캔
     thought_dir = os.path.join(VAULT_DIR, "thoughts")

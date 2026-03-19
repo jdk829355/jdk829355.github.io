@@ -2,16 +2,6 @@
   "about": "about.md",
   "projects": [
     {
-      "id": "Inforest (25-2 FSSP Lecture Project)",
-      "title": "Inforest (25-2 FSSP Lecture Project)",
-      "github": "https://github.com/JandiProject/Inforest",
-      "images": [
-        "Pasted image 20260319002700.png",
-        "Pasted image 20260319002820.png"
-      ],
-      "markdown": "Inforest (25-2 FSSP Lecture Project).md"
-    },
-    {
       "id": "Jandi",
       "title": "Jandi",
       "github": "https://github.com/JandiProject",
@@ -19,7 +9,17 @@
         "스크린샷 2026-03-19 오전 1.35.55.png",
         "Pasted image 20260319013626.png"
       ],
-      "markdown": "Jandi.md"
+      "markdown": "{1}Jandi.md"
+    },
+    {
+      "id": "Inforest (25-2 FSSP Lecture Project)",
+      "title": "Inforest (25-2 FSSP Lecture Project)",
+      "github": "https://github.com/JandiProject/Inforest",
+      "images": [
+        "Pasted image 20260319002700.png",
+        "Pasted image 20260319002820.png"
+      ],
+      "markdown": "{2}Inforest (25-2 FSSP Lecture Project).md"
     }
   ],
   "thoughts": [
