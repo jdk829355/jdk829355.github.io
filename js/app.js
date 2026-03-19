@@ -95,6 +95,9 @@ async function fetchMarkdown(path) {
     if (!res.ok) throw new Error(`Failed to load ${path}`);
     let text = await res.text();
 
+    // YAML Frontmatter 제거
+    text = text.replace(/^---\s*[\s\S]*?---\s*\n/m, '');
+
     // Obsidian style image syntax ![[image.png]] 지원을 위한 전처리
     text = text.replace(/!\[\[(.*?)\]\]/g, (match, p1) => `![${p1}](${encodeURI('vault/images/' + p1)})`);
 
@@ -137,33 +140,14 @@ async function loadProjects(projects) {
       const res = await fetch(`vault/projects/${proj.markdown}`);
       if (res.ok) {
         let text = await res.text();
-
-        // YAML Tags parsing (--- tags: ... ---)
-        let tags = [];
-        const tagsMatch = text.match(/^---\s*\ntags:\s*\n((?:\s*-\s*.*\n?)+)---/);
-        if (tagsMatch) {
-          const tagList = tagsMatch[1];
-          tags = tagList.split('\n')
-            .map(t => t.replace(/^\s*-\s*/, '').trim())
-            .filter(t => t !== '');
-        }
-
-        // 전체 프론트매터 제거 (태그 포함)
-        text = text.replace(/^---[\s\S]*?---\s*/, '');
-
-        // 프로젝트 텍스트 본문(프론트매터 이후)에서 github 링크와 이미지 제거
+        // YAML Frontmatter 제거
+        text = text.replace(/^---\s*[\s\S]*?---\s*\n/m, '');
+        // 프로젝트 텍스트 본문에서는 이 메타데이터들을 지운다
         text = text.replace(/^github:\s*.*$/gim, '');
         text = text.replace(/!\[\[(.*?)\]\]/g, '');
         text = text.replace(/!\[([^\]]*)\](?!\()/g, '');
         text = text.replace(/!\[.*?\]\((.*?)\)/g, '');
         markdownHtml = marked.parse(text);
-
-        // 태그 HTML 생성
-        let tagsHtml = '';
-        if (tags.length > 0) {
-          tagsHtml = `<div class="project-tags">${tags.map(t => `<span class="project-tag">#${t}</span>`).join('')}</div>`;
-        }
-        proj.tagsHtml = tagsHtml; // 임시 저장
       }
     } catch (e) { }
 
@@ -196,9 +180,13 @@ async function loadProjects(projects) {
         </div>
         <div class="project-content">
           <div class="project-header">
-            <div class="project-title-group">
+            <div class="project-title-area">
               <h3 class="project-title">${proj.title}</h3>
-              ${proj.tagsHtml || ''}
+              ${proj.tags && proj.tags.length > 0 ? `
+                <div class="project-tags">
+                  ${proj.tags.map(tag => `<span class="project-tag">#${tag}</span>`).join('')}
+                </div>
+              ` : ''}
             </div>
             ${proj.github ? `
               <a href="${proj.github}" target="_blank" rel="noopener noreferrer" class="github-link">

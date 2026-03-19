@@ -10,44 +10,51 @@ def parse_markdown(filepath):
     title = os.path.basename(filepath).replace(".md", "")
     images = []
     github = ""
+    tags = []
+    
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
-            lines = f.readlines()
-            if not lines:
-                return title, [], ""
+            full_content = f.read()
+        
+        # 1. 프론트매터 추출 (--- ... ---)
+        main_content = full_content
+        fm_match = re.match(r'^---\s*\n(.*?)\n---\s*\n', full_content, re.DOTALL)
+        if fm_match:
+            frontmatter = fm_match.group(1)
+            main_content = full_content[fm_match.end():]
             
-            # 첫 번째 줄에서 github 주소 파싱 (github: url)
-            first_line = lines[0].strip()
-            gm = re.match(r'^github:\s*(https?://[^\s]+)', first_line, re.IGNORECASE)
-            if gm:
-                github = gm.group(1).strip()
-            
-            # 전체 내용 (heading 검색용)
-            content = "".join(lines)
-            
-            # 두 번째 줄부터의 내용 (이미지 파싱용)
-            rest_content = "".join(lines[1:])
-            
-            # 본문에서 첫 번째 헤딩(# 제목)을 찾으면 그것을 제목으로 사용
-            m = re.search(r'^#\s+(.+)', content, re.MULTILINE)
-            if m:
-                title = m.group(1).strip()
-            
-            # 이미지 태그에서 파일명 추출 (Obsidian 포맷 ![[이미지.png]]) - 두 번째 줄부터
-            img_matches = re.findall(r'!\[\[(.*?)\]\]', rest_content)
-            images.extend(img_matches)
-            
-            # 일반 마크다운 포맷 ![텍스트](이미지.png) -> 괄호 안이 이미지 - 두 번째 줄부터
-            std_matches = re.findall(r'!\[.*?\]\((.*?)\)', rest_content)
-            for path in std_matches:
-                img_name = os.path.basename(path).replace("%20", " ") # 인코딩 풀기
-                if img_name not in images:
-                    images.append(img_name)
+            # 태그 파싱 (YAML 리스트 형태 지원)
+            tag_section = re.search(r'tags:\s*\n((?:\s*-\s*.*\n?)*)', frontmatter)
+            if tag_section:
+                lines = tag_section.group(1).split('\n')
+                tags = [line.strip().lstrip('-').strip() for line in lines if line.strip()]
+        
+        # 2. 깃허브 주소 파싱 (프론트매터 외부 상단에서 우선순위)
+        gm = re.search(r'^github:\s*(https?://[^\s]+)', main_content, re.MULTILINE | re.IGNORECASE)
+        if gm:
+            github = gm.group(1).strip()
+            # 깃허브 주소 줄은 본문 텍스트에서 나중에 제외될 수 있도록 처리 (현재는 단순 추출)
+
+        # 3. 본문에서 첫 번째 헤딩(# 제목)을 찾으면 그것을 제목으로 사용
+        m = re.search(r'^#\s+(.+)', main_content, re.MULTILINE)
+        if m:
+            title = m.group(1).strip()
+        
+        # 4. 이미지 태그에서 파일명 추출 (Obsidian 포맷 ![[이미지.png]])
+        img_matches = re.findall(r'!\[\[(.*?)\]\]', main_content)
+        images.extend(img_matches)
+        
+        # 5. 일반 마크다운 포맷 ![텍스트](이미지.png) -> 괄호 안이 이미지
+        std_matches = re.findall(r'!\[.*?\]\((.*?)\)', main_content)
+        for path in std_matches:
+            img_name = os.path.basename(path).replace("%20", " ") # 인코딩 풀기
+            if img_name not in images:
+                images.append(img_name)
                 
     except Exception as e:
         print(f"Error parsing {filepath}: {e}")
     
-    return title, images, github
+    return title, images, github, tags
 
 def generate():
     data = {
@@ -75,12 +82,13 @@ def generate():
 
         for seq, file_title, f in proj_files_info:
             path = os.path.join(proj_dir, f)
-            _, images, github = parse_markdown(path)
+            _, images, github, tags = parse_markdown(path)
             data["projects"].append({
                 "id": file_title,
                 "title": file_title,
                 "github": github,
                 "images": images,
+                "tags": tags,
                 "markdown": f
             })
                 
@@ -97,7 +105,7 @@ def generate():
         
         for f in files:
             path = os.path.join(thought_dir, f)
-            title, _, _ = parse_markdown(path)
+            title, _, _, _ = parse_markdown(path)
             data["thoughts"].append({
                 "title": title,
                 "markdown": f

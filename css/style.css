@@ -453,21 +453,17 @@ body {
 .project-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  /* 태그가 생기면 높이가 생기므로 상단 정렬 */
   margin-bottom: 16px;
   border-bottom: 1px solid var(--color-border);
   padding-bottom: 16px;
 }
 
-.project-title-group {
+.project-title-area {
   display: flex;
   flex-direction: column;
   gap: 4px;
-}
-
-.project-title {
-  font-size: 1.5rem;
-  font-weight: 700;
 }
 
 .project-tags {
@@ -477,10 +473,18 @@ body {
 }
 
 .project-tag {
-  font-size: 0.8rem;
-  color: var(--color-primary);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
   opacity: 0.8;
+  background: var(--color-hover);
+  padding: 2px 8px;
+  border-radius: 4px;
   font-weight: 500;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .github-link {
