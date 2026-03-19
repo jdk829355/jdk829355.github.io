@@ -95,8 +95,8 @@ async function fetchMarkdown(path) {
     if (!res.ok) throw new Error(`Failed to load ${path}`);
     let text = await res.text();
 
-    // YAML Frontmatter 제거
-    text = text.replace(/^---\s*[\s\S]*?---\s*\n/m, '');
+    // YAML Frontmatter 제거 (줄바꿈 호환성 개선)
+    text = text.replace(/^---\s*[\s\S]*?---\s*(\r\n|\n)/m, '');
 
     // Obsidian style image syntax ![[image.png]] 지원을 위한 전처리
     text = text.replace(/!\[\[(.*?)\]\]/g, (match, p1) => `![${p1}](${encodeURI('vault/images/' + p1)})`);
@@ -137,11 +137,11 @@ async function loadProjects(projects) {
     // 미리 markdown 내용을 가져옴 (이미지와 github 헤더를 제거하기 위함)
     let markdownHtml = '';
     try {
-      const res = await fetch(`vault/projects/${encodeURI(proj.markdown)}`);
+      const res = await fetch(`vault/projects/${encodeURIComponent(proj.markdown)}`);
       if (res.ok) {
         let text = await res.text();
-        // YAML Frontmatter 제거
-        text = text.replace(/^---\s*[\s\S]*?---\s*\n/m, '');
+        // YAML Frontmatter 제거 (줄바꿈 호환성 개선)
+        text = text.replace(/^---\s*[\s\S]*?---\s*(\r\n|\n)/m, '');
         // 프로젝트 텍스트 본문에서는 이 메타데이터들을 지운다
         text = text.replace(/^github:\s*.*$/gim, '');
         text = text.replace(/!\[\[(.*?)\]\]/g, '');
@@ -387,26 +387,23 @@ function initEmailCopy() {
 
 // ===================== Typewriter Effect =====================
 function initTypewriter() {
-  const titleElement = document.getElementById('typewriter-title');
-  if (!titleElement) return;
+  const elements = document.querySelectorAll('.typewriter-text');
 
-  // HTML에 적힌 원본 텍스트를 저장하고 화면에서 지움
-  const textToType = titleElement.textContent.trim();
-  titleElement.textContent = '';
+  elements.forEach(titleElement => {
+    // HTML에 적힌 원본 텍스트를 저장하고 화면에서 지움
+    const textToType = titleElement.textContent.trim();
+    titleElement.textContent = '';
 
-  let i = 0;
-  function typeWriter() {
-    if (i < textToType.length) {
-      // 한 글자씩 추가
-      titleElement.textContent += textToType.charAt(i);
-      i++;
-
-      // 타이핑 속도에 약간의 랜덤성을 부여하여 사람처럼 보이게 (70ms ~ 120ms)
-      const speed = Math.random() * 50 + 70;
-      setTimeout(typeWriter, speed);
+    let i = 0;
+    function typeWriter() {
+      if (i < textToType.length) {
+        titleElement.textContent += textToType.charAt(i);
+        i++;
+        const speed = Math.random() * 50 + 70;
+        setTimeout(typeWriter, speed);
+      }
     }
-  }
 
-  // 페이지 진입 후 0.4초 대기했다가 타이핑 시작
-  setTimeout(typeWriter, 400);
+    setTimeout(typeWriter, 400);
+  });
 }

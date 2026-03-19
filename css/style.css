@@ -156,7 +156,7 @@ body {
 }
 
 /* Typewriter Cursor */
-#typewriter-title::after {
+.typewriter-text::after {
   content: '|';
   display: inline-block;
   margin-left: 4px;
