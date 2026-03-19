@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initSubTabs(); // 내부 탭 초기화
+  initTypewriter();
   loadVaultData();
   initLightbox();
   initProjectModal();
@@ -368,4 +369,30 @@ function initEmailCopy() {
       toastTimer = setTimeout(() => toast.classList.remove('visible'), 1500);
     });
   });
+}
+
+// ===================== Typewriter Effect =====================
+function initTypewriter() {
+  const titleElement = document.getElementById('typewriter-title');
+  if (!titleElement) return;
+
+  // HTML에 적힌 원본 텍스트를 저장하고 화면에서 지움
+  const textToType = titleElement.textContent.trim();
+  titleElement.textContent = '';
+
+  let i = 0;
+  function typeWriter() {
+    if (i < textToType.length) {
+      // 한 글자씩 추가
+      titleElement.textContent += textToType.charAt(i);
+      i++;
+
+      // 타이핑 속도에 약간의 랜덤성을 부여하여 사람처럼 보이게 (70ms ~ 120ms)
+      const speed = Math.random() * 50 + 70;
+      setTimeout(typeWriter, speed);
+    }
+  }
+
+  // 페이지 진입 후 0.4초 대기했다가 타이핑 시작
+  setTimeout(typeWriter, 400);
 }

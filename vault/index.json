@@ -2,21 +2,32 @@
   "about": "about.md",
   "projects": [
     {
-      "id": "Jandi",
-      "title": "Jandi",
+      "id": "Jandi (진행중)",
+      "title": "Jandi (진행중)",
       "github": "https://github.com/JandiProject",
       "images": [
         "Pasted image 20260319230639.png",
-        "Pasted image 20260319013626.png"
+        "Pasted image 20260320011332.png",
+        "Pasted image 20260320011340.png",
+        "Pasted image 20260320011347.png",
+        "Pasted image 20260320011351.png",
+        "Pasted image 20260320011356.png",
+        "Pasted image 20260320011406.png",
+        "Pasted image 20260320011412.png",
+        "Pasted image 20260320011433.png",
+        "Pasted image 20260320011446.png",
+        "Pasted image 20260320011450.png",
+        "Pasted image 20260320011503.png",
+        "Pasted image 20260320011510.png"
       ],
-      "markdown": "{1}Jandi.md"
+      "markdown": "{1}Jandi (진행중).md"
     },
     {
       "id": "Inforest (25-2 FSSP Lecture Project)",
       "title": "Inforest (25-2 FSSP Lecture Project)",
       "github": "https://github.com/JandiProject/Inforest",
       "images": [
-        "Pasted image 20260319002700.png|",
+        "Pasted image 20260319002700.png",
         "Pasted image 20260319002820.png"
       ],
       "markdown": "{2}Inforest (25-2 FSSP Lecture Project).md"
