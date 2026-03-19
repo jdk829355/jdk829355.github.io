@@ -1,3 +1,7 @@
+---
+tags:
+  - 팀프로젝트
+---
 github: https://github.com/JandiProject
 ![[Pasted image 20260319230639.png]]
 ![[Pasted image 20260320011332.png]]
