@@ -1,4 +1,5 @@
 github: https://github.com/JandiProject/Inforest
+![[Pasted image 20260320012703.png]]
 ![[Pasted image 20260320012503.png]]
 ![[Pasted image 20260320012510.png]]
 ![[Pasted image 20260320012521.png]]
