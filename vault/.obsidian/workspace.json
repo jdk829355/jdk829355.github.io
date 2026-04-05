@@ -4,20 +4,79 @@
     "type": "split",
     "children": [
       {
-        "id": "f92b47b7b37199c1",
-        "type": "tabs",
+        "id": "2f8351e76d01c333",
+        "type": "split",
         "children": [
           {
-            "id": "b57eb289adb164d1",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "새 탭"
-            }
+            "id": "b876dd5913400fae",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "f334432b8fae2e7b",
+                "type": "leaf",
+                "state": {
+                  "type": "markdown",
+                  "state": {
+                    "file": "projects/{3}ToDoWith!.md",
+                    "mode": "source",
+                    "source": false
+                  },
+                  "icon": "lucide-file",
+                  "title": "{3}ToDoWith!"
+                }
+              }
+            ]
+          },
+          {
+            "id": "074633cc7928301e",
+            "type": "tabs",
+            "children": [
+              {
+                "id": "b4878e0f9eebe952",
+                "type": "leaf",
+                "pinned": true,
+                "state": {
+                  "type": "terminal:terminal",
+                  "state": {
+                    "terminal:terminal": {
+                      "cwd": "/Users/jeongdaegyun/myhomepage/vault",
+                      "focus": false,
+                      "profile": {
+                        "args": [
+                          "--login"
+                        ],
+                        "executable": "/bin/zsh",
+                        "followTheme": true,
+                        "name": "",
+                        "platforms": {
+                          "darwin": true
+                        },
+                        "pythonExecutable": "python3",
+                        "restoreHistory": false,
+                        "rightClickAction": "copyPaste",
+                        "successExitCodes": [
+                          "0",
+                          "SIGINT",
+                          "SIGTERM"
+                        ],
+                        "terminalOptions": {
+                          "documentOverride": null
+                        },
+                        "type": "integrated",
+                        "useWin32Conhost": true
+                      },
+                      "serial": null
+                    }
+                  },
+                  "pinned": true,
+                  "icon": "terminal",
+                  "title": "터미널: ( cd ~/myhomepage && python3 generate.py && git add . && git commit -m  && gi)"
+                }
+              }
+            ]
           }
-        ]
+        ],
+        "direction": "horizontal"
       }
     ],
     "direction": "vertical"
@@ -177,28 +236,28 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "b57eb289adb164d1",
+  "active": "b4878e0f9eebe952",
   "lastOpenFiles": [
-    "projects/{2}Inforest (25-2 FSSP Project).md",
+    "projects/{3}ToDoWith!.md",
     "projects/{2}Inforest.md",
     "projects/{1}Jandi.md",
+    "images/Pasted image 20260406004814.png",
+    "images/Pasted image 20260406004810.png",
+    "images/Pasted image 20260406004805.png",
+    "images/Pasted image 20260406004800.png",
+    "images/Pasted image 20260406004755.png",
+    "images/Pasted image 20260406004750.png",
+    "images/Pasted image 20260406004745.png",
+    "images/Pasted image 20260406004741.png",
+    "images/Pasted image 20260406004727.png",
+    "images/Pasted image 20260406004716.png",
+    "projects/{2}Inforest (25-2 FSSP Project).md",
     "index.json",
     "projects/{1}Jandi (진행중).md",
     "thoughts/Spring에 입문하며 느낀점.md",
-    "images/Pasted image 20260320012703.png",
-    "images/Pasted image 20260320012521.png",
-    "images/Pasted image 20260320012510.png",
-    "images/Pasted image 20260320012503.png",
-    "images/Pasted image 20260319002820.png",
-    "images/Pasted image 20260319002700.png",
-    "images/Pasted image 20260320011450.png",
-    "images/Pasted image 20260320011503.png",
-    "images/Pasted image 20260320011510.png",
-    "images/Pasted image 20260320011446.png",
     "about.md",
     "thoughts/사고창고 테스트.md",
     "templates/{seq}projects.md",
-    "projects/무제.md",
     "templates/thoughts.md",
     "templates",
     "thoughts/사고창고 테스트2 코드 삽입.md",
