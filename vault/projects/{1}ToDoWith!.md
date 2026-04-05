@@ -22,10 +22,10 @@ github: https://github.com/todo-with/todowith
 5. 채팅으로 todo 생성 기능
 ### 기술 스택
 - Frontend: Next.js
-- Backend: FastAPI
-- Db: PostgreSQL (pgvector)
-- Deployment: Docker Compose, EC2
-- AI: OpenAI API, Huggingface API (for vector embedding)
-- MessageQueue: Redis PubSub
+- Backend: **FastAPI**
+- Db: **PostgreSQL (pgvector)**
+- Deployment: **Docker Compose**, EC2
+- AI: OpenAI API, **Huggingface API** (for vector embedding)
+- MessageQueue: **Redis PubSub**
 ### 참고
 [자세한 회고](https://jungdaegyun.notion.site/ToDoWith-3391ce939b9580f19e96e0bb8fa08f4e?source=copy_link)
