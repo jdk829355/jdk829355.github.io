@@ -2,6 +2,27 @@
   "about": "about.md",
   "projects": [
     {
+      "id": "ToDoWith!",
+      "title": "ToDoWith!",
+      "github": "https://github.com/todo-with/todowith",
+      "images": [
+        "Pasted image 20260406004716.png",
+        "Pasted image 20260406004741.png",
+        "Pasted image 20260406004745.png",
+        "Pasted image 20260406004750.png",
+        "Pasted image 20260406004755.png",
+        "Pasted image 20260406004800.png",
+        "Pasted image 20260406004805.png",
+        "Pasted image 20260406004810.png",
+        "Pasted image 20260406004814.png"
+      ],
+      "tags": [
+        "2026세모톤",
+        "팀프로젝트"
+      ],
+      "markdown": "{1}ToDoWith!.md"
+    },
+    {
       "id": "Jandi",
       "title": "Jandi",
       "github": "https://github.com/JandiProject",
@@ -24,7 +45,7 @@
         "팀프로젝트",
         "진행중"
       ],
-      "markdown": "{1}Jandi.md"
+      "markdown": "{2}Jandi.md"
     },
     {
       "id": "Inforest",
@@ -40,28 +61,7 @@
         "개인프로젝트",
         "25-2-FSSP-Project"
       ],
-      "markdown": "{2}Inforest.md"
-    },
-    {
-      "id": "ToDoWith!",
-      "title": "ToDoWith!",
-      "github": "https://github.com/todo-with/todowith",
-      "images": [
-        "Pasted image 20260406004716.png",
-        "Pasted image 20260406004741.png",
-        "Pasted image 20260406004745.png",
-        "Pasted image 20260406004750.png",
-        "Pasted image 20260406004755.png",
-        "Pasted image 20260406004800.png",
-        "Pasted image 20260406004805.png",
-        "Pasted image 20260406004810.png",
-        "Pasted image 20260406004814.png"
-      ],
-      "tags": [
-        "2026세모톤",
-        "팀프로젝트"
-      ],
-      "markdown": "{3}ToDoWith!.md"
+      "markdown": "{3}Inforest.md"
     }
   ],
   "thoughts": [
