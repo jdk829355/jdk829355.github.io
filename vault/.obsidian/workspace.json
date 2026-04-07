@@ -10,6 +10,7 @@
           {
             "id": "b876dd5913400fae",
             "type": "tabs",
+            "dimension": 76.59574468085107,
             "children": [
               {
                 "id": "f334432b8fae2e7b",
@@ -30,6 +31,7 @@
           {
             "id": "87b3e5f2c21fd6ea",
             "type": "tabs",
+            "dimension": 23.404255319148938,
             "children": [
               {
                 "id": "e35e049a4959fff8",
@@ -239,8 +241,8 @@
   "active": "e35e049a4959fff8",
   "lastOpenFiles": [
     "projects/{1}ToDoWith!.md",
-    "projects/{2}Jandi.md",
     "projects/{3}Inforest.md",
+    "projects/{2}Jandi.md",
     "images/Pasted image 20260406004814.png",
     "images/Pasted image 20260406004810.png",
     "images/Pasted image 20260406004805.png",
