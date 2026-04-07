@@ -28,4 +28,5 @@ github: https://github.com/todo-with/todowith
 - AI: OpenAI API, **Huggingface API** (for vector embedding)
 - MessageQueue: **Redis PubSub**
 ### 참고
+[유튜브 영상](https://youtu.be/fm6EeuBX_r4)
 [자세한 회고](https://jungdaegyun.notion.site/ToDoWith-3391ce939b9580f19e96e0bb8fa08f4e?source=copy_link)
