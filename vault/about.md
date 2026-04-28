@@ -13,31 +13,31 @@
 </div>
 
 ### 💻 Languages 
-<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
-<img src="https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=Go&logoColor=white"/>
-<img src="https://img.shields.io/badge/C++-00599C?style=flat-square&logo=c%2B%2B&logoColor=white"/>
-<img src="https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=openjdk&logoColor=white"/>
-<img src="https://img.shields.io/badge/Dart-0175C2?style=flat-square&logo=Dart&logoColor=white"/>
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black"/>
+<span class="badge badge-python">Python</span>
+<span class="badge badge-go">Go</span>
+<span class="badge badge-cpp">C++</span>
+<span class="badge badge-java">Java</span>
+<span class="badge badge-dart">Dart</span>
+<span class="badge badge-js">JavaScript</span>
 
 <br>
 
 ### 🛠 Tech Stack & Tools
 
 <p style="margin-bottom: 8px; font-size: 0.85em; color: var(--color-text-muted);">Frameworks & Data Orchestration</p>
-<img src="https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=FastAPI&logoColor=white"/>
-<img src="https://img.shields.io/badge/Prefect-070E10?style=flat-square&logo=Prefect&logoColor=white"/>
+<span class="badge badge-fastapi">FastAPI</span>
+<span class="badge badge-prefect">Prefect</span>
 
 <div style="margin-top: 16px;"></div>
 
 <p style="margin-bottom: 8px; font-size: 0.85em; color: var(--color-text-muted);">Communication & Database</p>
-<img src="https://img.shields.io/badge/gRPC-255C99?style=flat-square&logo=grpc&logoColor=white"/>
-<img src="https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white"/>
-<img src="https://img.shields.io/badge/RabbitMQ-FF6600?style=flat-square&logo=rabbitmq&logoColor=white"/>
+<span class="badge badge-grpc">gRPC</span>
+<span class="badge badge-redis">Redis</span>
+<span class="badge badge-rabbitmq">RabbitMQ</span>
 
 <div style="margin-top: 16px;"></div>
 
 <p style="margin-bottom: 8px; font-size: 0.85em; color: var(--color-text-muted);">Infrastructure</p>
-<img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=Docker&logoColor=white"/>
+<span class="badge badge-docker">Docker</span>
 
 </div>

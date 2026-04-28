@@ -4,17 +4,21 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initSubTabs(); // 내부 탭 초기화
   initTypewriter();
-  loadVaultData();
+  initEmailCopy();
   initLightbox();
   initProjectModal();
-  initEmailCopy();
+  initVaultLoading();
 });
 
 // Configure Marked.js options
-marked.setOptions({
-  breaks: true,
-  gfm: true
-});
+if (window.marked) {
+  window.marked.setOptions({
+    breaks: true,
+    gfm: true
+  });
+} else {
+  console.error('Marked.js not loaded');
+}
 
 // Navigation Handling
 function initNavigation() {
@@ -72,21 +76,57 @@ function initSubTabs() {
 }
 
 // Fetch and load data
-async function loadVaultData() {
+async function fetchVaultIndex() {
   const cacheBuster = `?t=${new Date().getTime()}`;
   try {
     const res = await fetch(`vault/index.json${cacheBuster}`);
     if (!res.ok) throw new Error('Cannot load vault/index.json');
-    const data = await res.json();
-
-    await Promise.all([
-      loadAbout(data.about, data.profile_image),
-      loadProjects(data.projects),
-      loadThoughts(data.thoughts)
-    ]);
+    return await res.json();
   } catch (error) {
     console.error('Error loading vault data:', error);
     document.getElementById('about-markdown-container').innerHTML = '<p>데이터를 불러오는데 실패했습니다.</p>';
+    return null;
+  }
+}
+
+async function initVaultLoading() {
+  const data = await fetchVaultIndex();
+  if (!data) return;
+
+  await Promise.all([
+    loadAbout(data.about, data.profile_image),
+    loadProjects(data.projects)
+  ]);
+
+  let thoughtsLoaded = false;
+  const loadThoughtsOnce = () => {
+    if (thoughtsLoaded) return;
+    thoughtsLoaded = true;
+    loadThoughts(data.thoughts);
+  };
+
+  if (window.location.hash === '#thoughts') {
+    loadThoughtsOnce();
+  }
+
+  window.addEventListener('hashchange', () => {
+    if (window.location.hash === '#thoughts') {
+      loadThoughtsOnce();
+    }
+  });
+
+  if ('IntersectionObserver' in window) {
+    const thoughtsSection = document.getElementById('thoughts-page');
+    if (thoughtsSection) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        const isVisible = entries.some(entry => entry.isIntersecting);
+        if (isVisible) {
+          loadThoughtsOnce();
+          obs.disconnect();
+        }
+      }, { rootMargin: '200px' });
+      observer.observe(thoughtsSection);
+    }
   }
 }
 
@@ -111,7 +151,7 @@ async function fetchMarkdown(path) {
     // ![image.png] 형식 (뒤에 괄호 경로가 없는 순수 파일명 패턴) 지원을 위한 전처리
     text = text.replace(/!\[([^\]]+)\](?!\()/g, (match, p1) => `![${p1}](${encodeURI('vault/images/' + p1)})`);
 
-    return marked.parse(text);
+    return window.marked.parse(text);
   } catch (e) {
     console.error(e);
     return `<p>내용을 불러올 수 없습니다. (${path})</p>`;
@@ -140,100 +180,136 @@ async function loadProjects(projects) {
 
   container.innerHTML = '';
 
-  for (const proj of projects) {
-    const cacheBuster = `?t=${new Date().getTime()}`;
-    // ID에 공백이나 특수문자가 있으면 HTML ID로 부적합하므로 안전하게 변환
-    const safeId = proj.id.replace(/[^a-z0-9]/gi, '_');
-
-    // 미리 markdown 내용을 가져옴 (이미지와 github 헤더를 제거하기 위함)
-    let markdownHtml = '';
-    try {
-      const res = await fetch(`vault/projects/${encodeURIComponent(proj.markdown)}${cacheBuster}`);
-      if (res.ok) {
-        let text = await res.text();
-        // YAML Frontmatter 제거
-        text = text.replace(/^---\s*[\s\S]*?---\s*/m, '');
-        // 프로젝트 텍스트 본문에서는 이 메타데이터들을 지운다
-        text = text.replace(/^github:\s*.*$/gim, '');
-        text = text.replace(/!\[\[(.*?)\]\]/g, '');
-        text = text.replace(/!\[([^\]]*)\](?!\()/g, '');
-        text = text.replace(/!\[.*?\]\((.*?)\)/g, '');
-
-        if (typeof marked === 'undefined') {
-          markdownHtml = `<p>Error: Marked.js not loaded.</p><pre>${text}</pre>`;
-        } else {
-          markdownHtml = (marked.parse || marked)(text);
-        }
-      } else {
-        markdownHtml = `<p class="error-message">내용을 불러올 수 없습니다. (Status: ${res.status})</p>`;
-        console.warn(`Fetch failed: ${res.status} for vault/projects/${proj.markdown}`);
-      }
-    } catch (e) {
-      markdownHtml = `<p class="error-message">내용 로드 중 오류가 발생했습니다.</p>`;
-      console.error(`Error fetching project markdown: ${proj.markdown}`, e);
-    }
-
-    // Create Carousel HTML
-    let imagesHtml = '';
-    let dotsHtml = '';
-    if (proj.images && proj.images.length > 0) {
-      proj.images.forEach((img, idx) => {
-        const activeClass = idx === 0 ? 'active' : '';
-        // Handle images, assuming they are inside vault/images/
-        imagesHtml += `<img src="vault/images/${encodeURI(img)}" class="${activeClass}" data-idx="${idx}" alt="${proj.title} 이미지">`;
-        dotsHtml += `<div class="carousel-dot ${activeClass}" data-idx="${idx}"></div>`;
-      });
-    } else {
-      imagesHtml = '<div class="photo-placeholder">사진이 없습니다.</div>';
-    }
-
-    const html = `
-      <article class="project-card">
-        <div class="project-carousel" id="carousel-${safeId}">
-          ${imagesHtml}
-          ${proj.images && proj.images.length > 1 ? `
-            <button class="carousel-arrow carousel-arrow-prev" aria-label="이전 사진">
-              <i class="ph ph-caret-left"></i>
-            </button>
-            <button class="carousel-arrow carousel-arrow-next" aria-label="다음 사진">
-              <i class="ph ph-caret-right"></i>
-            </button>
-          ` : ''}
-        </div>
-        <div class="project-content">
-          <div class="project-header">
-            <div class="project-title-area">
-              <h3 class="project-title">${proj.title}</h3>
-              ${proj.tags && proj.tags.length > 0 ? `
-                <div class="project-tags">
-                  ${proj.tags.map(tag => `<span class="project-tag">#${tag}</span>`).join('')}
-                </div>
-              ` : ''}
-            </div>
-            ${proj.github ? `
-              <a href="${proj.github}" target="_blank" rel="noopener noreferrer" class="github-link">
-                <i class="ph ph-github-logo"></i>
-              </a>
-            ` : ''}
-          </div>
-          <div class="project-description markdown-body">
-            ${markdownHtml}
-          </div>
-        </div>
-      </article>
-    `;
-
+  const [firstProject, ...restProjects] = projects;
+  if (firstProject) {
+    const html = await renderProject(firstProject);
     container.insertAdjacentHTML('beforeend', html);
-
-    // Init Carousel interactions
-    if (proj.images && proj.images.length > 1) {
-      const carouselEl = document.getElementById(`carousel-${safeId}`);
-      initCarousel(carouselEl);
-    }
+    initProjectCarousel(firstProject);
   }
 
-  // 로드 후 높이 체크 (더보기 버튼 활성화)
+  if (restProjects.length > 0) {
+    const placeholder = document.createElement('div');
+    placeholder.className = 'project-placeholder';
+    container.appendChild(placeholder);
+
+    const loadRemaining = async () => {
+      for (const proj of restProjects) {
+        const html = await renderProject(proj);
+        container.insertAdjacentHTML('beforeend', html);
+        initProjectCarousel(proj);
+      }
+      placeholder.remove();
+      checkDescriptions();
+    };
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, obs) => {
+        const isVisible = entries.some(entry => entry.isIntersecting || entry.intersectionRatio > 0);
+        if (isVisible) {
+          loadRemaining();
+          obs.disconnect();
+        }
+      }, { rootMargin: '600px 0px' });
+      observer.observe(placeholder);
+    } else {
+      loadRemaining();
+    }
+
+    setTimeout(() => {
+      if (placeholder.isConnected) {
+        loadRemaining();
+      }
+    }, 1500);
+  }
+
   checkDescriptions();
+}
+
+async function renderProject(proj) {
+  const cacheBuster = `?t=${new Date().getTime()}`;
+  const safeId = proj.id.replace(/[^a-z0-9]/gi, '_');
+  let markdownHtml = '';
+
+  try {
+    const res = await fetch(`vault/projects/${encodeURIComponent(proj.markdown)}${cacheBuster}`);
+    if (res.ok) {
+      let text = await res.text();
+      text = text.replace(/^---\s*[\s\S]*?---\s*/m, '');
+      text = text.replace(/^github:\s*.*$/gim, '');
+      text = text.replace(/!\[\[(.*?)\]\]/g, '');
+      text = text.replace(/!\[([^\]]*)\](?!\()/g, '');
+      text = text.replace(/!\[.*?\]\((.*?)\)/g, '');
+
+      if (!window.marked) {
+        markdownHtml = `<p>Error: Marked.js not loaded.</p><pre>${text}</pre>`;
+      } else {
+        markdownHtml = (window.marked.parse || window.marked)(text);
+      }
+    } else {
+      markdownHtml = `<p class="error-message">내용을 불러올 수 없습니다. (Status: ${res.status})</p>`;
+      console.warn(`Fetch failed: ${res.status} for vault/projects/${proj.markdown}`);
+    }
+  } catch (e) {
+    markdownHtml = `<p class="error-message">내용 로드 중 오류가 발생했습니다.</p>`;
+    console.error(`Error fetching project markdown: ${proj.markdown}`, e);
+  }
+
+  let imagesHtml = '';
+  let dotsHtml = '';
+  if (proj.images && proj.images.length > 0) {
+    const firstImage = proj.images[0];
+    imagesHtml += `<img src="vault/images/${encodeURI(firstImage)}" class="active" data-idx="0" alt="${proj.title} 이미지" loading="lazy" decoding="async" fetchpriority="low">`;
+    proj.images.forEach((img, idx) => {
+      const activeClass = idx === 0 ? 'active' : '';
+      dotsHtml += `<div class="carousel-dot ${activeClass}" data-idx="${idx}"></div>`;
+    });
+  } else {
+    imagesHtml = '<div class="photo-placeholder">사진이 없습니다.</div>';
+  }
+
+  return `
+    <article class="project-card" data-project-id="${safeId}">
+      <div class="project-carousel" id="carousel-${safeId}" data-images="${encodeURIComponent(JSON.stringify(proj.images || []))}">
+        ${imagesHtml}
+        ${proj.images && proj.images.length > 1 ? `
+          <button class="carousel-arrow carousel-arrow-prev" aria-label="이전 사진">
+            <svg class="icon" aria-hidden="true"><use href="#icon-caret-left"></use></svg>
+          </button>
+          <button class="carousel-arrow carousel-arrow-next" aria-label="다음 사진">
+            <svg class="icon" aria-hidden="true"><use href="#icon-caret-right"></use></svg>
+          </button>
+        ` : ''}
+      </div>
+      <div class="project-content">
+        <div class="project-header">
+          <div class="project-title-area">
+            <h3 class="project-title">${proj.title}</h3>
+            ${proj.tags && proj.tags.length > 0 ? `
+              <div class="project-tags">
+                ${proj.tags.map(tag => `<span class="project-tag">#${tag}</span>`).join('')}
+              </div>
+            ` : ''}
+          </div>
+          ${proj.github ? `
+            <a href="${proj.github}" target="_blank" rel="noopener noreferrer" class="github-link">
+              <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
+            </a>
+          ` : ''}
+        </div>
+        <div class="project-description markdown-body">
+          ${markdownHtml}
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function initProjectCarousel(proj) {
+  if (proj.images && proj.images.length > 1) {
+    const safeId = proj.id.replace(/[^a-z0-9]/gi, '_');
+    const carouselEl = document.getElementById(`carousel-${safeId}`);
+    if (carouselEl) initCarousel(carouselEl);
+  }
 }
 
 function checkDescriptions() {
@@ -255,12 +331,32 @@ function checkDescriptions() {
 }
 
 function initCarousel(carouselElement) {
-  const images = carouselElement.querySelectorAll('img');
+  const imagesData = carouselElement.dataset.images
+    ? JSON.parse(decodeURIComponent(carouselElement.dataset.images))
+    : [];
+  const totalImages = imagesData.length;
+  const existingImages = carouselElement.querySelectorAll('img');
+  existingImages.forEach((img, idx) => {
+    if (idx !== 0) img.remove();
+  });
   let current = 0;
 
   function showImage(idx) {
-    images.forEach(i => i.classList.remove('active'));
-    images[idx].classList.add('active');
+    const currentImages = carouselElement.querySelectorAll('img');
+    currentImages.forEach(i => i.classList.remove('active'));
+    let target = carouselElement.querySelector(`img[data-idx="${idx}"]`);
+    if (!target && imagesData[idx]) {
+      target = document.createElement('img');
+      target.src = `vault/images/${encodeURI(imagesData[idx])}`;
+      target.alt = `${carouselElement.closest('.project-card')?.querySelector('.project-title')?.textContent || '프로젝트'} 이미지`;
+      target.dataset.idx = idx;
+      target.loading = 'lazy';
+      target.decoding = 'async';
+      target.fetchPriority = 'low';
+      target.className = 'active';
+      carouselElement.appendChild(target);
+    }
+    if (target) target.classList.add('active');
     current = idx;
   }
 
@@ -269,12 +365,14 @@ function initCarousel(carouselElement) {
 
   if (prev) {
     prev.addEventListener('click', () => {
-      showImage((current - 1 + images.length) % images.length);
+      if (totalImages === 0) return;
+      showImage((current - 1 + totalImages) % totalImages);
     });
   }
   if (next) {
     next.addEventListener('click', () => {
-      showImage((current + 1) % images.length);
+      if (totalImages === 0) return;
+      showImage((current + 1) % totalImages);
     });
   }
 }

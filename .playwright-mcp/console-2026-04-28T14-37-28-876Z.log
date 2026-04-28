@@ -1,0 +1,2 @@
+[      88ms] ReferenceError: marked is not defined
+    at http://localhost:8000/js/app.js:14:1

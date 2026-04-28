@@ -1,0 +1,54 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - link "jdk829355" [ref=e4] [cursor=pointer]:
+        - /url: "#about"
+      - navigation [ref=e5]:
+        - link "about" [ref=e6] [cursor=pointer]:
+          - /url: "#about"
+        - link "thoughts" [ref=e7] [cursor=pointer]:
+          - /url: "#thoughts"
+    - main [ref=e8]:
+      - generic [ref=e9]:
+        - heading "|" [level=1] [ref=e10]
+        - generic [ref=e11]:
+          - button "whoami" [ref=e12] [cursor=pointer]
+          - button "projects" [ref=e13] [cursor=pointer]
+        - generic [ref=e14]:
+          - img "프로필 사진" [ref=e16]
+          - generic [ref=e17]:
+            - generic [ref=e20]:
+              - generic [ref=e21]:
+                - text: Name
+                - text: 정대균 (DAEGYUN JUNG)
+              - generic [ref=e22]:
+                - text: Affiliation
+                - text: Kyunghee University
+                - text: (Software Convergence / Undergraduate)
+              - heading "💻 Languages" [level=3] [ref=e23]
+              - paragraph [ref=e24]:
+                - generic [ref=e25]: Python
+                - generic [ref=e26]: Go
+                - generic [ref=e27]: C++
+                - generic [ref=e28]: Java
+                - generic [ref=e29]: Dart
+                - generic [ref=e30]: JavaScript
+              - heading "🛠 Tech Stack & Tools" [level=3] [ref=e31]
+              - paragraph [ref=e32]: Frameworks & Data Orchestration
+              - generic [ref=e33]: FastAPI
+              - generic [ref=e34]: Prefect
+              - paragraph [ref=e35]: Communication & Database
+              - generic [ref=e36]: gRPC
+              - generic [ref=e37]: Redis
+              - generic [ref=e38]: RabbitMQ
+              - paragraph [ref=e39]: Infrastructure
+              - generic [ref=e40]: Docker
+            - generic [ref=e41]:
+              - link "" [ref=e42] [cursor=pointer]:
+                - /url: https://github.com/jdk829355
+                - generic [ref=e43]: 
+              - button "jdk829355@gmail.com" [ref=e44] [cursor=pointer]
+              - generic: 복사됨!
+        - text:         
+      - text: "|"
+  - text:  
