@@ -1,0 +1,2 @@
+[      87ms] [WARNING] A preload for 'https://cdn.jsdelivr.net/gh/sunnvest/font/google-sans.css' is found, but is not used because the request credentials mode does not match. Consider taking a look at crossorigin attribute. @ http://localhost:8000/index.html:12
+[      97ms] [ERROR] Refused to apply style from 'https://cdn.jsdelivr.net/gh/sunnvest/font/google-sans.css' because its MIME type ('text/plain') is not a supported stylesheet MIME type, and strict MIME checking is enabled. @ http://localhost:8000/index.html:0

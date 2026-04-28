@@ -358,6 +358,10 @@ body {
   margin-bottom: 48px;
 }
 
+.project-placeholder {
+  min-height: 1px;
+}
+
 /* Project Card */
 .project-card {
   display: grid;
@@ -602,11 +606,35 @@ body {
 }
 
 /* 배지 이미지 간격 */
-.profile-intro .markdown-body img {
-  margin: 3px 3px 3px 0;
-  border-radius: 4px;
-  vertical-align: middle;
+.profile-intro .markdown-body .badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 3px 4px 3px 0;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  text-transform: none;
 }
+
+.profile-intro .markdown-body .badge-python { background: #3776ab; }
+.profile-intro .markdown-body .badge-go { background: #00add8; }
+.profile-intro .markdown-body .badge-cpp { background: #00599c; }
+.profile-intro .markdown-body .badge-java { background: #ed8b00; }
+.profile-intro .markdown-body .badge-dart { background: #0175c2; }
+.profile-intro .markdown-body .badge-js { background: #f7df1e; color: #111111; }
+.profile-intro .markdown-body .badge-fastapi { background: #009688; }
+.profile-intro .markdown-body .badge-prefect { background: #070e10; }
+.profile-intro .markdown-body .badge-grpc { background: #255c99; }
+.profile-intro .markdown-body .badge-redis { background: #dc382d; }
+.profile-intro .markdown-body .badge-rabbitmq { background: #ff6600; }
+.profile-intro .markdown-body .badge-docker { background: #2496ed; }
 
 /* ===================== Lightbox ===================== */
 .lightbox {
@@ -837,4 +865,18 @@ body {
   .project-title {
     font-size: 1.3rem;
   }
+}
+/* Icon sprite */
+.icon-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: middle;
 }

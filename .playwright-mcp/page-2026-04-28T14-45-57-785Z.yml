@@ -1,0 +1,26 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - link "jdk829355" [ref=e4] [cursor=pointer]:
+      - /url: "#about"
+    - navigation [ref=e5]:
+      - link "about" [ref=e6] [cursor=pointer]:
+        - /url: "#about"
+      - link "thoughts" [ref=e7] [cursor=pointer]:
+        - /url: "#thoughts"
+  - main [ref=e8]:
+    - generic [ref=e9]:
+      - heading "|" [level=1] [ref=e10]
+      - generic [ref=e11]:
+        - button "whoami" [ref=e12] [cursor=pointer]
+        - button "projects" [ref=e13] [cursor=pointer]
+      - generic [ref=e14]:
+        - generic [ref=e16]: 로딩 중...
+        - generic [ref=e17]:
+          - generic [ref=e19]: 로딩 중...
+          - generic [ref=e20]:
+            - link [ref=e21] [cursor=pointer]:
+              - /url: https://github.com/jdk829355
+              - img [ref=e22]
+            - button "jdk829355@gmail.com" [ref=e24] [cursor=pointer]
+            - generic: 복사됨!
+    - text: "|"
