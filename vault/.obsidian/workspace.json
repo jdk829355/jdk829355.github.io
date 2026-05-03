@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "projects/{2}Jandi.md",
+                "file": "projects/{1}ToDoWith!.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "{2}Jandi"
+              "title": "{1}ToDoWith!"
             }
           }
         ]
@@ -183,9 +183,9 @@
   },
   "active": "f334432b8fae2e7b",
   "lastOpenFiles": [
-    "projects/{1}ToDoWith!.md",
     "projects/{3}Inforest.md",
     "projects/{2}Jandi.md",
+    "projects/{1}ToDoWith!.md",
     "images/Pasted image 20260406004814.png",
     "images/Pasted image 20260406004810.png",
     "images/Pasted image 20260406004805.png",
