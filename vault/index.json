@@ -64,6 +64,11 @@
       "markdown": "{3}Inforest.md"
     }
   ],
-  "thoughts": [],
+  "thoughts": [
+    {
+      "title": "JPA Join 관련 정리",
+      "markdown": "JPA Join 관련 정리.md"
+    }
+  ],
   "profile_image": "profile.jpeg"
 }
