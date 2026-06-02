@@ -66,6 +66,10 @@
   ],
   "thoughts": [
     {
+      "title": "AccessLevel.PROTECTED 와 reflection",
+      "markdown": "AccessLevel.PROTECTED 와 reflection.md"
+    },
+    {
       "title": "JPA Join 관련 정리",
       "markdown": "JPA Join 관련 정리.md"
     }
