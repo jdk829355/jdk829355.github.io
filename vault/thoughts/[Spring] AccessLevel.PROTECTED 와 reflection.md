@@ -6,12 +6,13 @@
 
 이건 그냥 arg를 받지 않는 protected constructor를 생성하는 것이다. 
 
-|접근제어자|같은 클래스|같은 패키지|자식 클래스|외부|
-|---|---|---|---|---|
-|private|O|X|X|X|
-|default(package-private)|O|O|X|X|
-|protected|O|O|O|X|
-|public|O|O|O|O|
+| 접근제어자                    | 같은 클래스 | 같은 패키지 | 자식 클래스 | 외부  |
+| ------------------------ | ------ | ------ | ------ | --- |
+| private                  | O      | X      | X      | X   |
+| default(package-private) | O      | O      | X      | X   |
+| protected                | O      | O      | O      | X   |
+| public                   | O      | O      | O      | O   |
+
 그래서 entity 상에서 field가 null인 애들이(불완전한 객체) 생기는 것을 막을 수 있다. 
 
 ```Java

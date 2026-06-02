@@ -99,6 +99,13 @@ def generate():
         # 생성 시간 기준으로 가져와서 최신순 정렬
         def get_mtime(filename):
             return os.path.getmtime(os.path.join(thought_dir, filename))
+
+        def parse_thought_filename(filename):
+            name = filename.replace(".md", "").strip()
+            match = re.match(r'^\[([^\]]+)\]\s*(.+)$', name)
+            if match:
+                return match.group(1).strip(), match.group(2).strip()
+            return "기타", name
             
         files = [f for f in os.listdir(thought_dir) if f.endswith(".md")]
         files.sort(key=get_mtime, reverse=True)
@@ -106,8 +113,12 @@ def generate():
         for f in files:
             path = os.path.join(thought_dir, f)
             title, _, _, _ = parse_markdown(path)
+            category, filename_title = parse_thought_filename(f)
+            if title == f.replace(".md", ""):
+                title = filename_title
             data["thoughts"].append({
                 "title": title,
+                "category": category,
                 "markdown": f
             })
                 

@@ -66,12 +66,19 @@
   ],
   "thoughts": [
     {
-      "title": "AccessLevel.PROTECTED 와 reflection",
-      "markdown": "AccessLevel.PROTECTED 와 reflection.md"
+      "title": "개인적인 얘기",
+      "category": "private",
+      "markdown": "[private] 개인적인 얘기.md"
     },
     {
       "title": "JPA Join 관련 정리",
-      "markdown": "JPA Join 관련 정리.md"
+      "category": "Spring",
+      "markdown": "[Spring] JPA Join 관련 정리.md"
+    },
+    {
+      "title": "AccessLevel.PROTECTED 와 reflection",
+      "category": "Spring",
+      "markdown": "[Spring] AccessLevel.PROTECTED 와 reflection.md"
     }
   ],
   "profile_image": "profile.jpeg"
