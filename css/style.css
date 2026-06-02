@@ -551,6 +551,41 @@ body {
   gap: 0;
 }
 
+.thought-category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-xs);
+  margin-bottom: var(--sp-lg);
+  padding-bottom: var(--sp-md);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.thought-category-button {
+  background: transparent;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-sm);
+  color: var(--ink-subtle);
+  cursor: pointer;
+  font-family: var(--font-text);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+  padding: 7px 10px;
+  transition: var(--transition);
+}
+
+.thought-category-button:hover {
+  border-color: var(--hairline-strong);
+  color: var(--ink-muted);
+}
+
+.thought-category-button.active {
+  background: var(--surface-2);
+  border-color: var(--hairline-strong);
+  color: var(--ink);
+}
+
 .thought-card {
   background: var(--canvas);
   border-bottom: 1px solid var(--hairline);
@@ -565,46 +600,120 @@ body {
   transform: none;
 }
 
+.thought-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-md);
+  background: none;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--font-text);
+  padding: 0;
+  text-align: left;
+}
+
+.thought-toggle:hover .thought-title {
+  color: var(--primary-hover);
+}
+
+.thought-title-group {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  min-width: 0;
+}
+
+.thought-category-label {
+  flex: 0 0 auto;
+  color: var(--ink-subtle);
+  background: var(--surface-2);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-xs);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+  padding: 4px 7px;
+}
+
 .thought-title {
   font-size: 22px;
   font-weight: 500;
   letter-spacing: -0.4px;
-  margin-bottom: var(--sp-sm);
   color: var(--ink);
+  transition: color 0.15s ease;
+  overflow-wrap: anywhere;
 }
 
-.thought-divider {
-  border: none;
-  border-top: 1px solid var(--hairline);
-  margin-bottom: var(--sp-md);
+.thought-toggle-icon {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  border-right: 1.5px solid var(--ink-subtle);
+  border-bottom: 1.5px solid var(--ink-subtle);
+  transform: rotate(45deg) translate(-2px, -2px);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.thought-toggle:hover .thought-toggle-icon,
+.thought-toggle[aria-expanded="true"] .thought-toggle-icon {
+  border-color: var(--primary-hover);
+}
+
+.thought-toggle[aria-expanded="true"] .thought-toggle-icon {
+  transform: rotate(225deg) translate(-3px, -3px);
 }
 
 .thought-content {
   font-size: 16px;
   color: var(--ink-muted);
-  line-height: 1.5;
+  line-height: 1.75;
+  padding-top: var(--sp-md);
+}
+
+.thought-content[hidden] {
+  display: none;
 }
 
 /* Markdown Styling overrides */
+.markdown-body {
+  line-height: 1.75;
+  color: var(--ink-muted);
+}
+
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3 {
-  margin-top: 1em;
-  margin-bottom: 0.5em;
+  margin-top: 1.4em;
+  margin-bottom: 0.65em;
   font-weight: 600;
   color: var(--ink);
+  line-height: 1.35;
+}
+
+.markdown-body h1:first-child,
+.markdown-body h2:first-child,
+.markdown-body h3:first-child {
+  margin-top: 0;
 }
 
 .markdown-body p {
-  margin-bottom: 1em;
+  margin-bottom: 1.1em;
   color: var(--ink-muted);
 }
 
 .markdown-body ul,
 .markdown-body ol {
   margin-left: 1.5em;
-  margin-bottom: 1em;
+  margin-bottom: 1.1em;
   color: var(--ink-muted);
+}
+
+.markdown-body li {
+  margin-bottom: 0.35em;
 }
 
 .markdown-body a {
@@ -620,7 +729,8 @@ body {
 .markdown-body code {
   font-family: var(--font-mono);
   background: var(--surface-2);
-  padding: 2px 6px;
+  border: 1px solid var(--hairline);
+  padding: 2px 5px;
   border-radius: var(--r-xs);
   font-size: 13px;
   color: var(--ink);
@@ -630,15 +740,52 @@ body {
   background: var(--surface-1);
   border: 1px solid var(--hairline);
   border-radius: var(--r-md);
-  padding: var(--sp-md);
+  padding: var(--sp-md) var(--sp-lg);
   overflow-x: auto;
-  margin-bottom: 1em;
+  margin: var(--sp-md) 0 var(--sp-lg);
+  line-height: 1.65;
 }
 
 .markdown-body pre code {
   background: none;
+  border: none;
   padding: 0;
   font-size: 13px;
+  line-height: inherit;
+}
+
+.markdown-body pre code.hljs {
+  background: transparent;
+  color: #c9d1d9;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  margin: var(--sp-md) 0 var(--sp-lg);
+  color: var(--ink-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid var(--hairline-strong);
+  padding: 8px 12px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.markdown-body th {
+  background: var(--surface-2);
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.markdown-body tr:nth-child(even) td {
+  background: var(--surface-1);
 }
 
 /* ===================== About.md intro styling ===================== */

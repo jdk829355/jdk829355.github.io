@@ -20,6 +20,28 @@ if (window.marked) {
   console.error('Marked.js not loaded');
 }
 
+function highlightMarkdown(container) {
+  if (!window.hljs || !container) return;
+
+  container.querySelectorAll('pre code').forEach(block => {
+    const languageClass = Array.from(block.classList).find(className => className.startsWith('language-'));
+    if (languageClass) {
+      block.classList.replace(languageClass, languageClass.toLowerCase());
+    }
+    window.hljs.highlightElement(block);
+  });
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, char => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[char]);
+}
+
 // Navigation Handling
 function initNavigation() {
   const links = document.querySelectorAll('.nav-link');
@@ -163,6 +185,7 @@ async function loadAbout(aboutPath, profileImage) {
   const html = await fetchMarkdown(`vault/${aboutPath}`);
   const container = document.getElementById('about-markdown-container');
   container.innerHTML = `<div class="markdown-body">${html}</div>`;
+  highlightMarkdown(container);
 
   if (profileImage) {
     const photoContainer = document.querySelector('.profile-photo');
@@ -185,6 +208,7 @@ async function loadProjects(projects) {
     const html = await renderProject(firstProject);
     container.insertAdjacentHTML('beforeend', html);
     initProjectCarousel(firstProject);
+    highlightMarkdown(container);
   }
 
   if (restProjects.length > 0) {
@@ -199,6 +223,7 @@ async function loadProjects(projects) {
         initProjectCarousel(proj);
       }
       placeholder.remove();
+      highlightMarkdown(container);
       checkDescriptions();
     };
 
@@ -385,15 +410,32 @@ async function loadThoughts(thoughts) {
   }
 
   container.innerHTML = '';
+  const categories = [...new Set(thoughts.map(thought => thought.category || '기타'))];
 
-  for (const thought of thoughts) {
+  container.insertAdjacentHTML('beforeend', `
+    <div class="thought-category-filter" role="group" aria-label="사고창고 카테고리 필터">
+      <button class="thought-category-button active" type="button" data-category="all" aria-pressed="true">전체</button>
+      ${categories.map(category => `
+        <button class="thought-category-button" type="button" data-category="${escapeHtml(category)}" aria-pressed="false">${escapeHtml(category)}</button>
+      `).join('')}
+    </div>
+  `);
+
+  for (const [index, thought] of thoughts.entries()) {
     const markdownHtml = await fetchMarkdown(`vault/thoughts/${thought.markdown}`);
+    const contentId = `thought-content-${index}`;
+    const category = thought.category || '기타';
 
     const html = `
-      <article class="thought-card">
-        <h3 class="thought-title">${thought.title}</h3>
-        <hr class="thought-divider">
-        <div class="thought-content markdown-body">
+      <article class="thought-card" data-category="${escapeHtml(category)}">
+        <button class="thought-toggle" type="button" aria-expanded="false" aria-controls="${contentId}">
+          <span class="thought-title-group">
+            <span class="thought-category-label">${escapeHtml(category)}</span>
+            <span class="thought-title">${escapeHtml(thought.title)}</span>
+          </span>
+          <span class="thought-toggle-icon" aria-hidden="true"></span>
+        </button>
+        <div class="thought-content markdown-body" id="${contentId}" hidden>
           ${markdownHtml}
         </div>
       </article>
@@ -401,6 +443,36 @@ async function loadThoughts(thoughts) {
 
     container.insertAdjacentHTML('beforeend', html);
   }
+
+  highlightMarkdown(container);
+
+  container.addEventListener('click', event => {
+    const toggle = event.target.closest('.thought-toggle');
+    if (!toggle || !container.contains(toggle)) return;
+
+    const content = document.getElementById(toggle.getAttribute('aria-controls'));
+    if (!content) return;
+
+    const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!isExpanded));
+    content.hidden = isExpanded;
+  });
+
+  container.addEventListener('click', event => {
+    const categoryButton = event.target.closest('.thought-category-button');
+    if (!categoryButton || !container.contains(categoryButton)) return;
+
+    const selectedCategory = categoryButton.dataset.category;
+    container.querySelectorAll('.thought-category-button').forEach(button => {
+      const isActive = button === categoryButton;
+      button.classList.toggle('active', isActive);
+      button.setAttribute('aria-pressed', String(isActive));
+    });
+
+    container.querySelectorAll('.thought-card').forEach(card => {
+      card.hidden = selectedCategory !== 'all' && card.dataset.category !== selectedCategory;
+    });
+  });
 }
 
 // ===================== Project Detail Modal =====================
