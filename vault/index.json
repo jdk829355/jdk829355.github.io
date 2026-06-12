@@ -16,6 +16,43 @@
       "markdown": "{1}IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석.md"
     },
     {
+      "id": "사주홈런",
+      "title": "사주홈런",
+      "github": "https://github.com/aws-cloud-clubs/2026-khu-project-team3",
+      "images": [
+        "images/사주홈런-pages/사주홈런-page-01.png",
+        "images/사주홈런-pages/사주홈런-page-02.png",
+        "images/사주홈런-pages/사주홈런-page-03.png",
+        "images/사주홈런-pages/사주홈런-page-04.png",
+        "images/사주홈런-pages/사주홈런-page-05.png",
+        "images/사주홈런-pages/사주홈런-page-06.png",
+        "images/사주홈런-pages/사주홈런-page-07.png",
+        "images/사주홈런-pages/사주홈런-page-08.png",
+        "images/사주홈런-pages/사주홈런-page-09.png",
+        "images/사주홈런-pages/사주홈런-page-10.png",
+        "images/사주홈런-pages/사주홈런-page-11.png",
+        "images/사주홈런-pages/사주홈런-page-12.png",
+        "images/사주홈런-pages/사주홈런-page-13.png",
+        "images/사주홈런-pages/사주홈런-page-14.png",
+        "images/사주홈런-pages/사주홈런-page-15.png",
+        "images/사주홈런-pages/사주홈런-page-16.png",
+        "images/사주홈런-pages/사주홈런-page-17.png",
+        "images/사주홈런-pages/사주홈런-page-18.png",
+        "images/사주홈런-pages/사주홈런-page-19.png",
+        "images/사주홈런-pages/사주홈런-page-20.png",
+        "images/사주홈런-pages/사주홈런-page-21.png",
+        "images/사주홈런-pages/사주홈런-page-22.png",
+        "images/사주홈런-pages/사주홈런-page-23.png",
+        "images/사주홈런-pages/사주홈런-page-24.png"
+      ],
+      "tags": [
+        "팀프로젝트",
+        "데이터수집",
+        "AWS"
+      ],
+      "markdown": "{2}사주홈런.md"
+    },
+    {
       "id": "Jandi",
       "title": "Jandi",
       "github": "https://github.com/JandiProject",
@@ -38,7 +75,7 @@
         "팀프로젝트",
         "진행중"
       ],
-      "markdown": "{2}Jandi.md"
+      "markdown": "{3}Jandi.md"
     },
     {
       "id": "ToDoWith!",
@@ -59,7 +96,7 @@
         "2026세모톤",
         "팀프로젝트"
       ],
-      "markdown": "{3}ToDoWith!.md"
+      "markdown": "{4}ToDoWith!.md"
     },
     {
       "id": "Inforest",
@@ -75,7 +112,7 @@
         "개인프로젝트",
         "25-2-FSSP-Project"
       ],
-      "markdown": "{4}Inforest.md"
+      "markdown": "{5}Inforest.md"
     }
   ],
   "thoughts": [
