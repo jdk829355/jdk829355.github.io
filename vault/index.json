@@ -2,27 +2,6 @@
   "about": "about.md",
   "projects": [
     {
-      "id": "ToDoWith!",
-      "title": "ToDoWith!",
-      "github": "https://github.com/todo-with/todowith",
-      "images": [
-        "Pasted image 20260406004716.png",
-        "Pasted image 20260406004741.png",
-        "Pasted image 20260406004745.png",
-        "Pasted image 20260406004750.png",
-        "Pasted image 20260406004755.png",
-        "Pasted image 20260406004800.png",
-        "Pasted image 20260406004805.png",
-        "Pasted image 20260406004810.png",
-        "Pasted image 20260406004814.png"
-      ],
-      "tags": [
-        "2026세모톤",
-        "팀프로젝트"
-      ],
-      "markdown": "{1}ToDoWith!.md"
-    },
-    {
       "id": "IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석",
       "title": "IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석",
       "github": "https://github.com/jdk829355/jd_to_vec_collection",
@@ -34,7 +13,7 @@
         "데이터수집",
         "데이터분석"
       ],
-      "markdown": "{2}IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석.md"
+      "markdown": "{1}IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석.md"
     },
     {
       "id": "Jandi",
@@ -59,7 +38,28 @@
         "팀프로젝트",
         "진행중"
       ],
-      "markdown": "{3}Jandi.md"
+      "markdown": "{2}Jandi.md"
+    },
+    {
+      "id": "ToDoWith!",
+      "title": "ToDoWith!",
+      "github": "https://github.com/todo-with/todowith",
+      "images": [
+        "Pasted image 20260406004716.png",
+        "Pasted image 20260406004741.png",
+        "Pasted image 20260406004745.png",
+        "Pasted image 20260406004750.png",
+        "Pasted image 20260406004755.png",
+        "Pasted image 20260406004800.png",
+        "Pasted image 20260406004805.png",
+        "Pasted image 20260406004810.png",
+        "Pasted image 20260406004814.png"
+      ],
+      "tags": [
+        "2026세모톤",
+        "팀프로젝트"
+      ],
+      "markdown": "{3}ToDoWith!.md"
     },
     {
       "id": "Inforest",
