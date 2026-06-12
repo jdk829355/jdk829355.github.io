@@ -16,10 +16,14 @@
                 "id": "f334432b8fae2e7b",
                 "type": "leaf",
                 "state": {
-                  "type": "empty",
-                  "state": {},
+                  "type": "markdown",
+                  "state": {
+                    "file": "projects/{4}IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석.md",
+                    "mode": "source",
+                    "source": false
+                  },
                   "icon": "lucide-file",
-                  "title": "새 탭"
+                  "title": "{4}IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석"
                 }
               }
             ]
@@ -68,7 +72,7 @@
                   },
                   "pinned": true,
                   "icon": "terminal",
-                  "title": "터미널: jeongdaegyun@MacBooooook:~/myhomepage/vault"
+                  "title": "터미널: ( cd ~/myhomepage && python3 generate.py && git add . && git commit -m  && gi)"
                 }
               }
             ]
@@ -131,7 +135,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 243.5
+    "width": 251.5
   },
   "right": {
     "id": "f5c7c927aeb982ac",
@@ -234,18 +238,20 @@
       "terminal:Open terminal": false
     }
   },
-  "active": "bcebad3810c7dfa6",
+  "active": "cca24af45116965f",
   "lastOpenFiles": [
+    "projects/{4}IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석.md",
+    "projects/{3}Inforest.md",
+    "projects/{2}Jandi.md",
+    "projects/{1}ToDoWith!.md",
+    "images/Pasted image 20260613010332.png",
     "thoughts/[private] 개인적인 얘기.md",
+    "thoughts/AccessLevel.PROTECTED 와 reflection.md",
     "thoughts/[private] 개인적인 얘기",
     "thoughts/[Spring] JPA Join 관련 정리.md",
     "thoughts/[Spring] AccessLevel.PROTECTED 와 reflection.md",
     "thoughts/JPA Join 관련 정리.md",
-    "thoughts/AccessLevel.PROTECTED 와 reflection.md",
     "templates/{seq}projects.md",
-    "projects/{3}Inforest.md",
-    "projects/{2}Jandi.md",
-    "projects/{1}ToDoWith!.md",
     "images/Pasted image 20260406004814.png",
     "images/Pasted image 20260406004810.png",
     "images/Pasted image 20260406004805.png",
@@ -255,7 +261,6 @@
     "images/Pasted image 20260406004745.png",
     "images/Pasted image 20260406004741.png",
     "images/Pasted image 20260406004727.png",
-    "images/Pasted image 20260406004716.png",
     "projects/{2}Inforest (25-2 FSSP Project).md",
     "index.json",
     "projects/{1}Jandi (진행중).md",
