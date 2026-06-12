@@ -50,10 +50,11 @@ function initNavigation() {
   // Simple routing based on hash
   function handleRoute() {
     let hash = window.location.hash || '#about';
-    const targetId = hash.replace('#', '') + '-page';
+    const pageHash = hash === '#projects' ? '#about' : hash;
+    const targetId = pageHash.replace('#', '') + '-page';
 
     links.forEach(link => {
-      if (link.getAttribute('href') === hash) {
+      if (link.getAttribute('href') === pageHash) {
         link.classList.add('active');
       } else {
         link.classList.remove('active');
@@ -83,18 +84,31 @@ function initSubTabs() {
   const tabs = document.querySelectorAll('.sub-tab');
   const subPages = document.querySelectorAll('.sub-page');
 
+  function activateSubTab(targetId) {
+    tabs.forEach(t => t.classList.remove('active'));
+    subPages.forEach(p => p.classList.remove('active'));
+
+    const tab = document.querySelector(`.sub-tab[data-subtarget="${targetId}"]`);
+    if (tab) tab.classList.add('active');
+
+    const targetEl = document.getElementById(targetId);
+    if (targetEl) targetEl.classList.add('active');
+  }
+
+  function syncSubTabWithHash() {
+    activateSubTab(window.location.hash === '#projects' ? 'projects-section' : 'profile-section');
+  }
+
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const targetId = tab.getAttribute('data-subtarget');
-
-      tabs.forEach(t => t.classList.remove('active'));
-      subPages.forEach(p => p.classList.remove('active'));
-
-      tab.classList.add('active');
-      const targetEl = document.getElementById(targetId);
-      if (targetEl) targetEl.classList.add('active');
+      activateSubTab(targetId);
+      window.location.hash = targetId === 'projects-section' ? '#projects' : '#about';
     });
   });
+
+  window.addEventListener('hashchange', syncSubTabWithHash);
+  syncSubTabWithHash();
 }
 
 // Fetch and load data
