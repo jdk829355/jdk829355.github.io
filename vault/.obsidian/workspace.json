@@ -18,12 +18,12 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "projects/{1}IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석.md",
+                    "file": "projects/{5}Inforest.md",
                     "mode": "source",
                     "source": false
                   },
                   "icon": "lucide-file",
-                  "title": "{1}IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석"
+                  "title": "{5}Inforest"
                 }
               }
             ]
@@ -240,12 +240,25 @@
   },
   "active": "cca24af45116965f",
   "lastOpenFiles": [
+    "projects/{5}Inforest.md",
+    "projects/{4}ToDoWith!.md",
+    "projects/{3}Jandi.md",
+    "projects/{2}사주홈런.md",
     "projects/{1}IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석.md",
-    "projects/{3}ToDoWith!.md",
-    "projects/{2}Jandi.md",
-    "projects/{4}Inforest.md",
+    "images/사주홈런-pages/사주홈런-page-24.png",
+    "images/사주홈런-pages/사주홈런-page-23.png",
+    "images/사주홈런-pages/사주홈런-page-22.png",
+    "images/사주홈런-pages/사주홈런-page-21.png",
+    "images/사주홈런-pages/사주홈런-page-20.png",
+    "images/사주홈런-pages/사주홈런-page-19.png",
+    "images/사주홈런-pages/사주홈런-page-18.png",
+    "images/사주홈런-pages/사주홈런-page-17.png",
+    "images/사주홈런-pages/사주홈런-page-16.png",
+    "images/사주홈런-pages/사주홈런-page-15.png",
+    "images/사주홈런-pages",
+    "images/사주홈런 (1) 1.pdf",
+    "images/사주홈런 (1).pdf",
     "about.md",
-    "images/Pasted image 20260613010332.png",
     "thoughts/[private] 개인적인 얘기.md",
     "thoughts/AccessLevel.PROTECTED 와 reflection.md",
     "thoughts/[private] 개인적인 얘기",
@@ -253,15 +266,6 @@
     "thoughts/[Spring] AccessLevel.PROTECTED 와 reflection.md",
     "thoughts/JPA Join 관련 정리.md",
     "templates/{seq}projects.md",
-    "images/Pasted image 20260406004814.png",
-    "images/Pasted image 20260406004810.png",
-    "images/Pasted image 20260406004805.png",
-    "images/Pasted image 20260406004800.png",
-    "images/Pasted image 20260406004755.png",
-    "images/Pasted image 20260406004750.png",
-    "images/Pasted image 20260406004745.png",
-    "images/Pasted image 20260406004741.png",
-    "images/Pasted image 20260406004727.png",
     "projects/{2}Inforest (25-2 FSSP Project).md",
     "index.json",
     "projects/{1}Jandi (진행중).md",
