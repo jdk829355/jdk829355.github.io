@@ -18,12 +18,12 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "projects/{5}Inforest.md",
+                    "file": "projects/{2}사주홈런.md",
                     "mode": "source",
                     "source": false
                   },
                   "icon": "lucide-file",
-                  "title": "{5}Inforest"
+                  "title": "{2}사주홈런"
                 }
               }
             ]
@@ -240,24 +240,25 @@
   },
   "active": "cca24af45116965f",
   "lastOpenFiles": [
+    "projects/{2}사주홈런.md",
+    "images/사주홈런-page-24.png",
+    "images/사주홈런-page-23.png",
+    "images/사주홈런-page-22.png",
+    "images/사주홈런-page-21.png",
+    "images/사주홈런-page-20.png",
+    "images/사주홈런-page-19.png",
+    "images/사주홈런-page-18.png",
+    "images/사주홈런-page-17.png",
+    "images/사주홈런-page-16.png",
+    "images/사주홈런-page-15.png",
+    "templates/{seq}projects.md",
+    "images/사주홈런 (1).pdf",
+    "images/사주홈런 (1) 1.pdf",
     "projects/{5}Inforest.md",
     "projects/{4}ToDoWith!.md",
     "projects/{3}Jandi.md",
-    "projects/{2}사주홈런.md",
     "projects/{1}IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석.md",
-    "images/사주홈런-pages/사주홈런-page-24.png",
-    "images/사주홈런-pages/사주홈런-page-23.png",
-    "images/사주홈런-pages/사주홈런-page-22.png",
-    "images/사주홈런-pages/사주홈런-page-21.png",
-    "images/사주홈런-pages/사주홈런-page-20.png",
-    "images/사주홈런-pages/사주홈런-page-19.png",
-    "images/사주홈런-pages/사주홈런-page-18.png",
-    "images/사주홈런-pages/사주홈런-page-17.png",
-    "images/사주홈런-pages/사주홈런-page-16.png",
-    "images/사주홈런-pages/사주홈런-page-15.png",
     "images/사주홈런-pages",
-    "images/사주홈런 (1) 1.pdf",
-    "images/사주홈런 (1).pdf",
     "about.md",
     "thoughts/[private] 개인적인 얘기.md",
     "thoughts/AccessLevel.PROTECTED 와 reflection.md",
@@ -265,7 +266,6 @@
     "thoughts/[Spring] JPA Join 관련 정리.md",
     "thoughts/[Spring] AccessLevel.PROTECTED 와 reflection.md",
     "thoughts/JPA Join 관련 정리.md",
-    "templates/{seq}projects.md",
     "projects/{2}Inforest (25-2 FSSP Project).md",
     "index.json",
     "projects/{1}Jandi (진행중).md",
