@@ -15,8 +15,6 @@
 ### 💻 Languages
 <span class="badge badge-python">Python</span><span class="badge badge-go">Go</span><span class="badge badge-cpp">C++</span><span class="badge badge-java">Java</span><span class="badge badge-dart">Dart</span><span class="badge badge-js">JavaScript</span>
 
-<br>
-
 ### 🛠 Tech Stack & Tools
 
 <p style="margin-bottom: 8px; font-size: 0.85em; color: var(--ink-muted);">Frameworks & Data Orchestration</p>
