@@ -18,12 +18,12 @@
                 "state": {
                   "type": "markdown",
                   "state": {
-                    "file": "projects/{4}Inforest.md",
+                    "file": "projects/{1}IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석.md",
                     "mode": "source",
                     "source": false
                   },
                   "icon": "lucide-file",
-                  "title": "{4}Inforest"
+                  "title": "{1}IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석"
                 }
               }
             ]
@@ -240,10 +240,11 @@
   },
   "active": "cca24af45116965f",
   "lastOpenFiles": [
+    "projects/{1}IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석.md",
+    "projects/{3}ToDoWith!.md",
+    "projects/{2}Jandi.md",
     "projects/{4}Inforest.md",
-    "projects/{3}Jandi.md",
-    "projects/{2}IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석.md",
-    "projects/{1}ToDoWith!.md",
+    "about.md",
     "images/Pasted image 20260613010332.png",
     "thoughts/[private] 개인적인 얘기.md",
     "thoughts/AccessLevel.PROTECTED 와 reflection.md",
@@ -265,7 +266,6 @@
     "index.json",
     "projects/{1}Jandi (진행중).md",
     "thoughts/Spring에 입문하며 느낀점.md",
-    "about.md",
     "thoughts/사고창고 테스트.md",
     "templates/thoughts.md",
     "templates",
