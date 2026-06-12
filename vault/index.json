@@ -23,6 +23,20 @@
       "markdown": "{1}ToDoWith!.md"
     },
     {
+      "id": "IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석",
+      "title": "IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석",
+      "github": "https://github.com/jdk829355/jd_to_vec_collection",
+      "images": [
+        "Pasted image 20260613010332.png"
+      ],
+      "tags": [
+        "개인프로젝트",
+        "데이터수집",
+        "데이터분석"
+      ],
+      "markdown": "{2}IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석.md"
+    },
+    {
       "id": "Jandi",
       "title": "Jandi",
       "github": "https://github.com/JandiProject",
@@ -45,7 +59,7 @@
         "팀프로젝트",
         "진행중"
       ],
-      "markdown": "{2}Jandi.md"
+      "markdown": "{3}Jandi.md"
     },
     {
       "id": "Inforest",
@@ -61,21 +75,7 @@
         "개인프로젝트",
         "25-2-FSSP-Project"
       ],
-      "markdown": "{3}Inforest.md"
-    },
-    {
-      "id": "IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석",
-      "title": "IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석",
-      "github": "https://github.com/jdk829355/jd_to_vec_collection",
-      "images": [
-        "Pasted image 20260613010332.png"
-      ],
-      "tags": [
-        "개인프로젝트",
-        "데이터수집",
-        "데이터분석"
-      ],
-      "markdown": "{4}IT 채용 공고에서의 직무명과 기술 요구사항 관계 분석.md"
+      "markdown": "{4}Inforest.md"
     }
   ],
   "thoughts": [
