@@ -8,19 +8,11 @@ github: https://github.com/jdk829355/Inforest
 ![[Pasted image 20260320012503.png]]
 ![[Pasted image 20260320012510.png]]
 ![[Pasted image 20260320012521.png]]
-Inforest는 웹 페이지를 주제별로 계층구조로 정리할 수 있습니다.
-### 기능
-- 웹 페이지 그룹화
-- 웹 페이지 계층적으로 관리
-- 웹 페이지에 노트 작성 (마크다운)
-- 웹 페이지 요약 내용 조회
-### 기술 스택
-- Frontend: Flutter (Macos)
-- Backend: gRPC (Go)
-- Db: Neo4j, Supabase
-- Deployment: Docker Compose, Minikube, Google Cloud Run
-- AI: Gemini API
-- MessageQueue: Redis RQ
+웹사이트를 스크랩하여 AI 요약을 보고 메모를 적을 수 있는 서비스입니다.
+- gRPC 기반 클라이언트-서버 통신 구조와 백엔드 아키텍처 설계
+- CRUD, AI 작업 요청, Streaming 기반 결과 전달 흐름 구현
+- Redis에 AI 작업 진행 상태를 저장하여 중복 요청을 방지하고 재접속 상황 처리
+- gRPC Streaming을 활용해 AI 작업 완료 시 클라이언트가 결과를 즉시 확인할 수 있도록 설계
 ### 참고
 [유튜브 영상](https://youtu.be/IvbV9t1wWMs)
 [자세한 회고](https://jungdaegyun.notion.site/InForest-3391ce939b958049bffbe1c1a352ce1b?source=copy_link)
