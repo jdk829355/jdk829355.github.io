@@ -1,257 +1,317 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jdk829355</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>jdk829355</title>
+    <!-- Inter + JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap"
+      as="style"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+    <link rel="icon" href="/public/favicon.ico" />
 
-  <!-- Inter + JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" as="style">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-  </noscript>
-  <link rel="icon" href="/public/favicon.ico" />
+    <!-- Marked.js for Markdown parsing -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"
+      defer
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/github-dark.min.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/lib/common.min.js"
+      defer
+    ></script>
 
-  <!-- Marked.js for Markdown parsing -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/github-dark.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/lib/common.min.js" defer></script>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
+      body {
+        font-family: var(--font-text);
+        background-color: var(--canvas);
+        color: var(--ink);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        min-height: 100vh;
+      }
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+      .app-container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 var(--sp-lg);
+        padding-bottom: 20vh;
+      }
 
-    body {
-      font-family: var(--font-text);
-      background-color: var(--canvas);
-      color: var(--ink);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      min-height: 100vh;
-    }
+      .top-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 56px;
+        border-bottom: 1px solid var(--hairline);
+        margin-bottom: var(--sp-xxl);
+      }
 
-    .app-container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 var(--sp-lg);
-      padding-bottom: 20vh;
-    }
+      .logo {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--ink);
+        letter-spacing: -0.02em;
+        text-decoration: none;
+      }
 
-    .top-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 56px;
-      border-bottom: 1px solid var(--hairline);
-      margin-bottom: var(--sp-xxl);
-    }
+      .nav-links {
+        display: flex;
+        gap: var(--sp-lg);
+      }
 
-    .logo {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--ink);
-      letter-spacing: -0.02em;
-      text-decoration: none;
-    }
+      .nav-link {
+        text-decoration: none;
+        color: var(--ink-subtle);
+        font-weight: 500;
+        font-size: 14px;
+        transition: var(--transition);
+        padding-bottom: 4px;
+      }
 
-    .nav-links {
-      display: flex;
-      gap: var(--sp-lg);
-    }
+      .nav-link.active {
+        color: var(--ink);
+        font-weight: 600;
+      }
 
-    .nav-link {
-      text-decoration: none;
-      color: var(--ink-subtle);
-      font-weight: 500;
-      font-size: 14px;
-      transition: var(--transition);
-      padding-bottom: 4px;
-    }
+      .page {
+        display: none;
+      }
 
-    .nav-link.active {
-      color: var(--ink);
-      font-weight: 600;
-    }
+      .page.active {
+        display: block;
+      }
 
-    .page {
-      display: none;
-    }
+      .page-title {
+        font-size: 42px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: var(--sp-xxl);
+        color: var(--ink);
+        letter-spacing: -1px;
+        line-height: 1.1;
+      }
 
-    .page.active {
-      display: block;
-    }
+      .typewriter-text::after {
+        content: "|";
+        display: inline-block;
+        margin-left: 4px;
+        opacity: 1;
+        color: var(--ink-subtle);
+        animation: blinkCursor 0.8s step-end infinite;
+      }
 
-    .page-title {
-      font-size: 42px;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: var(--sp-xxl);
-      color: var(--ink);
-      letter-spacing: -1px;
-      line-height: 1.1;
-    }
+      @keyframes blinkCursor {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
+    <link rel="preload" href="css/style.css?v=10" as="style" />
+    <link
+      rel="stylesheet"
+      href="css/style.css?v=10"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="css/style.css?v=10" />
+    </noscript>
+  </head>
 
-    .typewriter-text::after {
-      content: '|';
-      display: inline-block;
-      margin-left: 4px;
-      opacity: 1;
-      color: var(--ink-subtle);
-      animation: blinkCursor 0.8s step-end infinite;
-    }
+  <body>
+    <svg class="icon-sprite" aria-hidden="true" focusable="false">
+      <symbol id="icon-github" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.36 6.84 9.71.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.39-3.37-1.39-.45-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.58 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.27 2.75 1.05A9.33 9.33 0 0 1 12 6.94c.85 0 1.7.12 2.5.34 1.9-1.32 2.74-1.05 2.74-1.05.56 1.41.21 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.58 5.05.36.32.68.95.68 1.92 0 1.39-.01 2.5-.01 2.84 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"
+        />
+      </symbol>
+      <symbol id="icon-x" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7a1 1 0 1 0-1.41 1.42L10.59 12l-4.9 4.89a1 1 0 1 0 1.41 1.42L12 13.41l4.89 4.9a1 1 0 0 0 1.42-1.41L13.41 12l4.9-4.89a1 1 0 0 0-.01-1.4z"
+        />
+      </symbol>
+      <symbol id="icon-caret-left" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M15.41 7.41a1 1 0 0 1 0 1.41L12.24 12l3.17 3.17a1 1 0 1 1-1.41 1.42l-3.88-3.88a1 1 0 0 1 0-1.42l3.88-3.88a1 1 0 0 1 1.41 0z"
+        />
+      </symbol>
+      <symbol id="icon-caret-right" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M8.59 16.59a1 1 0 0 1 0-1.41L11.76 12 8.59 8.83a1 1 0 1 1 1.41-1.42l3.88 3.88a1 1 0 0 1 0 1.42l-3.88 3.88a1 1 0 0 1-1.41 0z"
+        />
+      </symbol>
+    </svg>
+    <div class="app-container">
+      <header class="top-nav">
+        <a href="#about" class="logo">jdk829355</a>
+        <nav class="nav-links">
+          <a href="#about" class="nav-link active" data-target="about-page"
+            >about</a
+          >
+          <a href="#projects" class="nav-link" data-target="projects-page"
+            >projects</a
+          >
+          <a href="#thoughts" class="nav-link" data-target="thoughts-page"
+            >thoughts</a
+          >
+        </nav>
+      </header>
 
-    @keyframes blinkCursor {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
+      <main class="content-area">
+        <!-- About Me Page -->
+        <section id="about-page" class="page active">
+          <h1 class="page-title typewriter-text">
+            만들고 사고하는 것을 즐깁니다.
+          </h1>
 
-    .sub-tabs {
-      display: inline-flex;
-      justify-content: center;
-      gap: var(--sp-xxs);
-      margin-bottom: var(--sp-xxl);
-      background: var(--canvas);
-      border-radius: var(--r-pill);
-      padding: var(--sp-xxs);
-    }
-
-    .sub-tab {
-      background: none;
-      border: none;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--ink-subtle);
-      cursor: pointer;
-      padding: 6px 14px;
-      border-radius: var(--r-pill);
-      transition: var(--transition);
-      font-family: var(--font-text);
-    }
-
-    .sub-tab.active {
-      color: var(--ink);
-      font-weight: 500;
-      background: var(--surface-2);
-    }
-  </style>
-  <link rel="preload" href="css/style.css?v=6" as="style">
-  <link rel="stylesheet" href="css/style.css?v=6" media="print" onload="this.media='all'">
-  <noscript>
-    <link rel="stylesheet" href="css/style.css?v=6">
-  </noscript>
-</head>
-
-<body>
-  <svg class="icon-sprite" aria-hidden="true" focusable="false">
-    <symbol id="icon-github" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.36 6.84 9.71.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.39-3.37-1.39-.45-1.2-1.11-1.52-1.11-1.52-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.58 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.27 2.75 1.05A9.33 9.33 0 0 1 12 6.94c.85 0 1.7.12 2.5.34 1.9-1.32 2.74-1.05 2.74-1.05.56 1.41.21 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.93-2.35 4.8-4.58 5.05.36.32.68.95.68 1.92 0 1.39-.01 2.5-.01 2.84 0 .27.18.6.69.49A10.03 10.03 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"/>
-    </symbol>
-    <symbol id="icon-x" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7a1 1 0 1 0-1.41 1.42L10.59 12l-4.9 4.89a1 1 0 1 0 1.41 1.42L12 13.41l4.89 4.9a1 1 0 0 0 1.42-1.41L13.41 12l4.9-4.89a1 1 0 0 0-.01-1.4z"/>
-    </symbol>
-    <symbol id="icon-caret-left" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M15.41 7.41a1 1 0 0 1 0 1.41L12.24 12l3.17 3.17a1 1 0 1 1-1.41 1.42l-3.88-3.88a1 1 0 0 1 0-1.42l3.88-3.88a1 1 0 0 1 1.41 0z"/>
-    </symbol>
-    <symbol id="icon-caret-right" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M8.59 16.59a1 1 0 0 1 0-1.41L11.76 12 8.59 8.83a1 1 0 1 1 1.41-1.42l3.88 3.88a1 1 0 0 1 0 1.42l-3.88 3.88a1 1 0 0 1-1.41 0z"/>
-    </symbol>
-  </svg>
-  <div class="app-container">
-    <header class="top-nav">
-      <a href="#about" class="logo">jdk829355</a>
-      <nav class="nav-links">
-        <a href="#about" class="nav-link active" data-target="about-page">about</a>
-        <a href="#thoughts" class="nav-link" data-target="thoughts-page">thoughts</a>
-      </nav>
-    </header>
-
-    <main class="content-area">
-      <!-- About Me Page -->
-      <section id="about-page" class="page active">
-        <h1 class="page-title typewriter-text">만들고 사고하는 것을 즐깁니다.</h1>
-
-        <div class="sub-tabs">
-          <button class="sub-tab active" data-subtarget="profile-section">whoami</button>
-          <button class="sub-tab" data-subtarget="projects-section">projects</button>
-        </div>
-
-        <div id="profile-section" class="profile-section sub-page active">
-          <div class="profile-photo">
-            <!-- Placeholder for photo -->
-            <div class="photo-placeholder">로딩 중...</div>
-          </div>
-          <div class="profile-intro">
-            <div id="about-markdown-container">
-              <!-- Markdown will be injected here -->
-              <div class="loading">로딩 중...</div>
+          <div id="profile-section" class="profile-section active">
+            <div class="profile-photo">
+              <!-- Placeholder for photo -->
+              <div class="photo-placeholder">로딩 중...</div>
             </div>
-            <div class="social-links">
-              <a href="https://github.com/jdk829355" target="_blank" rel="noopener noreferrer" class="social-item">
-              <svg class="icon" aria-hidden="true"><use href="#icon-github"></use></svg>
-              </a>
-              <button class="social-item social-email" id="copy-email-btn" title="이메일 주소 복사">
-                jdk829355@gmail.com
-              </button>
-              <span class="copy-toast" id="copy-toast">복사됨!</span>
+            <div class="profile-intro">
+              <div id="about-markdown-container">
+                <!-- Markdown will be injected here -->
+                <div class="loading">로딩 중...</div>
+              </div>
+              <div class="badge-section">
+                <h3 class="badge-section-title">🏅 CERTIFICATIONS</h3>
+                <a
+                  class="certification-badge-link"
+                  href="https://www.credly.com/badges/b2b525d0-a30d-478b-b755-f18c687b1c68/public_url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="AWS Certified Solutions Architect – Associate 인증 확인"
+                >
+                  <img
+                    class="certification-badge-image"
+                    src="public/aws-certified-solutions-architect-associate.png"
+                    alt="AWS Certified Solutions Architect – Associate 뱃지"
+                    width="138"
+                    height="138"
+                  />
+                </a>
+              </div>
+              <div class="social-links">
+                <a
+                  href="https://github.com/jdk829355"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="social-item"
+                >
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#icon-github"></use>
+                  </svg>
+                </a>
+                <button
+                  class="social-item social-email"
+                  id="copy-email-btn"
+                  title="이메일 주소 복사"
+                >
+                  jdk829355@gmail.com
+                </button>
+                <span class="copy-toast" id="copy-toast">복사됨!</span>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div id="projects-section" class="projects-section sub-page">
-          <div id="projects-container">
-            <!-- Projects injected here dynamically -->
+        <!-- Projects Page -->
+        <section id="projects-page" class="page">
+          <h1 class="page-title typewriter-text">projects</h1>
+          <div class="projects-section">
+            <div id="projects-container">
+              <!-- Projects injected here dynamically -->
+            </div>
           </div>
+        </section>
+
+        <!-- Thoughts Page -->
+        <section id="thoughts-page" class="page">
+          <div class="thoughts-header">
+            <h1 class="page-title typewriter-text">thoughts</h1>
+            <p class="page-subtitle">
+              제가 했던 고민과 그 해결과정을 제목과 짧은 글로 정리한 공간입니다
+            </p>
+          </div>
+
+          <div id="thoughts-container" class="thoughts-list">
+            <!-- Thoughts injected here dynamically -->
+            <div class="loading">로딩 중...</div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="js/app.js?v=14" type="module"></script>
+
+    <!-- Lightbox overlay (전역 이미지 확대) -->
+    <div
+      id="lightbox"
+      class="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="이미지 확대"
+    >
+      <button class="lightbox-close" id="lightbox-close" aria-label="닫기">
+        <svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg>
+      </button>
+      <img id="lightbox-img" src="" alt="확대 이미지" />
+    </div>
+
+    <!-- Project Detail Modal -->
+    <div
+      id="project-modal"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="프로젝트 세부 내용"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 id="modal-project-title">프로젝트명</h3>
+          <button class="modal-close" id="modal-close" aria-label="닫기">
+            <svg class="icon" aria-hidden="true">
+              <use href="#icon-x"></use>
+            </svg>
+          </button>
         </div>
-      </section>
-
-      <!-- Thoughts Page -->
-      <section id="thoughts-page" class="page">
-        <div class="thoughts-header">
-          <h1 class="page-title typewriter-text">thoughts</h1>
-          <p class="page-subtitle">제가 했던 고민과 그 해결과정을 제목과 짧은 글로 정리한 공간입니다</p>
+        <div id="modal-project-body" class="markdown-body">
+          <!-- Content will be injected here -->
         </div>
-
-        <div id="thoughts-container" class="thoughts-list">
-          <!-- Thoughts injected here dynamically -->
-          <div class="loading">로딩 중...</div>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <script src="js/app.js?v=6" type="module"></script>
-
-  <!-- Lightbox overlay (전역 이미지 확대) -->
-  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="이미지 확대">
-    <button class="lightbox-close" id="lightbox-close" aria-label="닫기">
-      <svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg>
-    </button>
-    <img id="lightbox-img" src="" alt="확대 이미지">
-  </div>
-
-  <!-- Project Detail Modal -->
-  <div id="project-modal" class="modal" role="dialog" aria-modal="true" aria-label="프로젝트 세부 내용">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 id="modal-project-title">프로젝트명</h3>
-        <button class="modal-close" id="modal-close" aria-label="닫기">
-          <svg class="icon" aria-hidden="true"><use href="#icon-x"></use></svg>
-        </button>
-      </div>
-      <div id="modal-project-body" class="markdown-body">
-        <!-- Content will be injected here -->
       </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>
